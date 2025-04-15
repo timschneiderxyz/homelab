@@ -1,0 +1,22 @@
+services:
+  mosquitto:
+    container_name: mosquitto
+    hostname: mosquitto.home
+    image: eclipse-mosquitto:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    ports:
+      - 1883:1883
+    volumes:
+      - /opt/containers/mosquitto/config:/mosquitto/config
+      - /opt/containers/mosquitto/data:/mosquitto/data
+      - /opt/containers/mosquitto/log:/mosquitto/log
+    environment:
+      TZ: Europe/Berlin
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.monitor-only=true"
+networks:
+  dockernet:
+    external: true

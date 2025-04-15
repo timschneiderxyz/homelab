@@ -1,0 +1,124 @@
+---
+
+- Infrastructure:
+    - UniFi:
+        href: http://10.10.10.1
+        icon: unifi
+        description: Network Management
+        ping: 10.10.10.1
+    - Proxmox VE:
+        href: https://proxmox.home.schndr.cloud
+        icon: proxmox
+        description: VMs
+        ping: 10.10.10.10
+    - Proxmox Backup Server:
+        href: https://pbs.home.schndr.cloud
+        icon: proxmox
+        description: Backup VMs
+        ping: 10.10.10.11
+    - TrueNAS Scale (Monty):
+        href: https://monty.home.schndr.cloud
+        icon: truenas-scale
+        description: NAS
+        ping: 10.10.10.20
+    - TrueNAS Scale (Aria):
+        href: https://aria.home.schndr.cloud
+        icon: truenas-scale
+        description: Backup NAS
+        ping: 100.118.182.87
+- Administration:
+    - Portainer (Lilith):
+        href: https://portainer.home.schndr.cloud
+        icon: portainer
+        description: Docker Container
+        server: docker
+        container: portainer
+    - Pi-Hole:
+        href: https://pihole.home.schndr.cloud/admin
+        icon: pi-hole
+        description: Ad Blocking & DNS
+        server: docker
+        container: pi-hole
+    - Traefik:
+        href: https://traefik.home.schndr.cloud
+        icon: traefik
+        description: Reverse Proxy
+        server: docker
+        container: traefik
+    - Authentik:
+        href: https://authentik.home.schndr.cloud
+        icon: authentik
+        description: Identity Provider
+        server: docker
+        container: authentik
+    - VS Code:
+        href: https://vscode.home.schndr.cloud
+        icon: vscode
+        description: Code Editor
+        server: docker
+        container: vscode
+- Smart Home:
+    - Home Assistant:
+        href: https://homeassistant.home.schndr.cloud
+        icon: home-assistant
+        description: Home Automation
+        server: docker
+        container: home-assistant
+    - Zigbee2MQTT:
+        href: https://zigbee2mqtt.home.schndr.cloud
+        icon: zigbee2mqtt
+        description: Zigbee to MQTT Bridge
+        server: docker
+        container: zigbee2mqtt
+    - SLZB-06M:
+        href: https://slzb.home.schndr.cloud
+        icon: si-zigbee-#EB0443
+        description: Zigbee Coordinator
+        ping: 10.10.80.2
+    - Shelly Pro 3EM:
+        href: http://10.10.80.3
+        icon: shelly
+        description: Power Consumption Meter
+        ping: 10.10.80.3
+    - LED-Matrix:
+        href: http://10.10.80.80
+        icon: wled
+        description: WLED
+        ping: 10.10.80.80
+- Services:
+    - Grafana:
+        href: https://grafana.home.schndr.cloud
+        icon: grafana
+        description: Data Visualization
+        server: docker
+        container: grafana
+    - Jellyfin:
+        href: https://jellyfin.home.schndr.cloud
+        icon: jellyfin
+        description: Media Streaming
+        server: docker
+        container: jellyfin
+    - Linkding:
+        href: https://linkding.home.schndr.cloud
+        icon: linkding
+        description: Bookmark Manager
+        server: docker
+        container: linkding
+    - Outline:
+        href: https://outline.home.schndr.cloud
+        icon: outline
+        description: Wiki and Documentation
+        server: docker
+        container: outline
+    - Uptime Kuma:
+        href: https://uptimekuma.home.schndr.cloud
+        icon: uptime-kuma
+        description: Uptime Monitoring
+        server: docker
+        container: uptime-kuma
+    - Vaultwarden:
+        href: https://vaultwarden.home.schndr.cloud
+        icon: bitwarden
+        description: Password Manager
+        server: docker
+        container: vaultwarden

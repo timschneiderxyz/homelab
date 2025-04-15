@@ -1,0 +1,99 @@
+---
+#  _   _
+# | | | |___  ___ _ __
+# | | | / __|/ _ \ '__|
+# | |_| \__ \  __/ |
+#  \___/|___/\___|_|
+# Tasks
+
+
+- name: Setup user if not root
+  when: user_name != "root"
+  block:
+    - name: Ensure user exists
+      ansible.builtin.user:
+        name: "{{ user_name }}"
+        password: "{{ user_password }}"
+
+    - name: Install sudo
+      ansible.builtin.apt:
+        name: sudo
+        state: present
+
+    - name: Add user to sudo group
+      ansible.builtin.user:
+        name: "{{ user_name }}"
+        groups: sudo
+        append: true
+
+    - name: Disable ".sudo_as_admin_successful" file
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/disable_admin_flag
+        line: Defaults !admin_flag
+        create: true
+        owner: root
+        group: root
+        mode: '0440'
+
+    - name: Ensure .ssh directory exist
+      ansible.builtin.file:
+        path: "{{ user_path }}.ssh"
+        state: directory
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0700'
+
+    - name: Copy SSH "authorized_keys" file to user
+      ansible.builtin.copy:
+        remote_src: true
+        src: /root/.ssh/authorized_keys
+        dest: "/home/{{ user_name }}/.ssh/authorized_keys"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0600'
+
+- name: Install required packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - zsh
+    - git
+    - neovim
+
+- name: Change user shell to zsh
+  ansible.builtin.user:
+    name: "{{ user_name }}"
+    shell: /bin/zsh
+
+- name: Clean up user home directory
+  ansible.builtin.file:
+    path: "{{ user_path }}{{ item }}"
+    state: absent
+  loop:
+    - .profile
+    - .bashrc
+    - .bash_logout
+    - .bash_history
+
+- name: Ensure required user directories exist
+  ansible.builtin.file:
+    path: "{{ user_path }}{{ item }}"
+    state: directory
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0755'
+  loop:
+    - .cache
+    - .cache/zsh
+    - .local
+    - .local/bin
+    - .local/share
+    - .local/state
+
+- name: Copy dotfiles to user home directory
+  ansible.builtin.copy:
+    src: common/dotfiles/
+    dest: "{{ user_path }}"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"

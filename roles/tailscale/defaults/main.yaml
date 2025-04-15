@@ -1,0 +1,12 @@
+---
+#  _____     _ _               _
+# |_   _|_ _(_) |___  ___ __ _| | ___
+#   | |/ _` | | / __|/ __/ _` | |/ _ \
+#   | | (_| | | \__ \ (_| (_| | |  __/
+#   |_|\__,_|_|_|___/\___\__,_|_|\___|
+# Defaults
+
+
+tailscale_gpg_key_url: https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
+tailscale_gpg_key_dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+tailscale_repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian {{ ansible_distribution_release }} main"

@@ -1,0 +1,23 @@
+services:
+  homepage:
+    container_name: homepage
+    hostname: homepage.home
+    image: ghcr.io/gethomepage/homepage:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/containers/homepage/config:/app/config
+    environment:
+      TZ: Europe/Berlin
+      HOMEPAGE_ALLOWED_HOSTS: home.schndr.cloud
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.homepage.entryPoints=websecure"
+      - "traefik.http.routers.homepage.rule=Host(`home.schndr.cloud`)"
+      - "traefik.http.services.homepage.loadbalancer.server.port=3000"
+networks:
+  dockernet:
+    external: true

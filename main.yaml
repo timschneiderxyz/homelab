@@ -1,0 +1,60 @@
+---
+#  __  __       _
+# |  \/  | __ _(_)_ __
+# | |\/| |/ _` | | '_ \
+# | |  | | (_| | | | | |
+# |_|  |_|\__,_|_|_| |_|
+# Playbook
+
+
+# Proxmox VE
+- hosts: proxmox
+  vars_files:
+    - 'vars/vault.yaml'
+  roles:
+    - role: packages
+      tags: [ run, update ]
+    - role: proxmox-remove-nag
+      tags: [ run, update ]
+    - role: motd
+      tags: run
+    - role: secure-ssh
+      tags: run
+
+# Proxmox Backup Server
+- hosts: pbs
+  vars_files:
+    - 'vars/vault.yaml'
+  roles:
+    - role: packages
+      tags: [ run, update ]
+    - role: proxmox-remove-nag
+      tags: [ run, update ]
+    - role: motd
+      tags: run
+    - role: secure-ssh
+      tags: run
+    - role: nfs-shares
+      tags: run
+
+# Lilith
+- hosts: lilith
+  vars_files:
+    - 'vars/vault.yaml'
+  roles:
+    - role: packages
+      tags: [ run, update ]
+    - role: user
+      tags: [ run, update ]
+    - role: motd
+      tags: run
+    - role: secure-ssh
+      tags: run
+    - role: nfs-shares
+      tags: run
+    - role: tailscale
+      tags: run
+    - role: docker
+      tags: run
+    - role: containers
+      tags: [ run, update ]

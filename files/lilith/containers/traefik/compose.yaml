@@ -1,0 +1,31 @@
+services:
+  traefik:
+    container_name: traefik
+    hostname: traefik.home
+    image: traefik:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/containers/traefik/config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - /opt/containers/traefik/config/config.yaml:/etc/traefik/config.yaml:ro
+      - /opt/containers/traefik/config/acme.json:/etc/traefik/acme.json
+      - /opt/containers/traefik/log:/var/log/traefik
+    environment:
+      TZ: Europe/Berlin
+      CF_API_EMAIL: ${CF_API_EMAIL}
+      CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entryPoints=websecure"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.home.schndr.cloud`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+networks:
+  dockernet:
+    external: true

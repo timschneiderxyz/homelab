@@ -1,0 +1,23 @@
+services:
+  linkding:
+    container_name: linkding
+    hostname: linkding.home
+    image: sissbruecker/linkding:latest-plus
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /opt/containers/linkding/data:/etc/linkding/data
+    environment:
+      TZ: Europe/Berlin
+      LD_SUPERUSER_NAME: ${LD_SUPERUSER_NAME}
+      LD_SUPERUSER_PASSWORD: ${LD_SUPERUSER_PASSWORD}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.linkding.entryPoints=websecure"
+      - "traefik.http.routers.linkding.rule=Host(`linkding.home.schndr.cloud`)"
+      - "traefik.http.services.linkding.loadbalancer.server.port=9090"
+networks:
+  dockernet:
+    external: true

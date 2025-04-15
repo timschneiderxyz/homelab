@@ -1,0 +1,31 @@
+# Bright
+light_bright:
+  alias: Light Bright
+  description: Set the light to a bright white color.
+  mode: single
+  fields:
+    entity_id:
+      required: true
+  sequence:
+    - action: light.turn_on
+      target:
+        entity_id: "{{ entity_id }}"
+      data:
+        brightness: 255
+        xy_color: [0.505, 0.385]
+
+# Night
+light_night:
+  alias: Light Night
+  description: Set the light to a dim warm color.
+  mode: single
+  fields:
+    entity_id:
+      required: true
+  sequence:
+    - action: light.turn_on
+      target:
+        entity_id: "{{ entity_id }}"
+      data:
+        brightness: 30
+        xy_color: [0.561, 0.4042]

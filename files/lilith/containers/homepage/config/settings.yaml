@@ -1,0 +1,18 @@
+---
+
+title: Homelab
+theme: dark
+color: gray
+headerStyle: clean
+statusStyle: dot
+hideVersion: true
+layout:
+  - Infrastructure:
+      style: column
+  - Administration:
+      style: column
+  - Smart Home:
+      style: column
+  - Services:
+      style: row
+      columns: 4

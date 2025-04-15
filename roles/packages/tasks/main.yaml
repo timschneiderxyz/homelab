@@ -1,0 +1,28 @@
+---
+#  ____            _
+# |  _ \ __ _  ___| | ____ _  __ _  ___  ___
+# | |_) / _` |/ __| |/ / _` |/ _` |/ _ \/ __|
+# |  __/ (_| | (__|   < (_| | (_| |  __/\__ \
+# |_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
+#                            |___/
+# Tasks
+
+
+- name: Update packages
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: yes
+    autoremove: true
+    autoclean: true
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ add_packages }}"
+
+- name: Remove packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ remove_packages }}"

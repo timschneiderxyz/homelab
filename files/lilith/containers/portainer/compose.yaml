@@ -1,0 +1,22 @@
+services:
+  portainer:
+    container_name: portainer
+    hostname: portainer.home
+    image: portainer/portainer-ce:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/containers/portainer/data:/data
+    environment:
+      TZ: Europe/Berlin
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.entryPoints=websecure"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.home.schndr.cloud`)"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+networks:
+  dockernet:
+    external: true

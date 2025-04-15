@@ -1,0 +1,73 @@
+services:
+  outline:
+    container_name: outline
+    hostname: outline.home
+    image: outlinewiki/outline:latest
+    depends_on:
+      - outline-postgres
+      - outline-redis
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /opt/containers/outline/data:/var/lib/outline/data
+    environment:
+      TZ: Europe/Berlin
+      URL: https://outline.home.schndr.cloud
+      SECRET_KEY: ${SECRET_KEY}
+      UTILS_SECRET: ${UTILS_SECRET}
+      REDIS_URL: redis://outline-redis:6379
+      DATABASE_URL: postgres://outline:${POSTGRES_PASSWORD}@outline-postgres:5432/outline?sslmode=disable
+      OIDC_DISPLAY_NAME: Authentik
+      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID}
+      OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET}
+      OIDC_AUTH_URI: https://authentik.home.schndr.cloud/application/o/authorize/
+      OIDC_TOKEN_URI: https://authentik.home.schndr.cloud/application/o/token/
+      OIDC_USERINFO_URI: https://authentik.home.schndr.cloud/application/o/userinfo/
+      OIDC_LOGOUT_URI: https://authentik.home.schndr.cloud/application/o/wiki/end-session/
+      OIDC_USERNAME_CLAIM: preferred_username
+      OIDC_SCOPES: openid email profile
+      SMTP_SECURE: false
+      SMTP_HOST: postfix
+      SMTP_PORT: 25
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_FROM_EMAIL: ${SMTP_FROM_EMAIL}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.outline.entryPoints=websecure"
+      - "traefik.http.routers.outline.rule=Host(`outline.home.schndr.cloud`)"
+      - "traefik.http.services.outline.loadbalancer.server.port=3000"
+  outline-redis:
+    container_name: outline-redis
+    hostname: outline-redis.home
+    image: redis:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /opt/containers/outline/redis:/data
+    environment:
+      TZ: Europe/Berlin
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+  outline-postgres:
+    container_name: outline-postgres
+    hostname: outline-postgres.home
+    image: postgres:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /opt/containers/outline/postgres:/var/lib/postgresql/data
+    environment:
+      TZ: Europe/Berlin
+      POSTGRES_DB: outline
+      POSTGRES_USER: outline
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+networks:
+  dockernet:
+    external: true

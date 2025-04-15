@@ -1,0 +1,22 @@
+services:
+  homeassistant:
+    container_name: home-assistant
+    hostname: home-assistant.home
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /opt/containers/home-assistant/config:/config
+    environment:
+      TZ: Europe/Berlin
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.homeassistant.entryPoints=websecure"
+      - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.home.schndr.cloud`)"
+      - "traefik.http.services.homeassistant.loadbalancer.server.port=8123"
+networks:
+  dockernet:
+    external: true

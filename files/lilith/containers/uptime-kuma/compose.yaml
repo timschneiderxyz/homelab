@@ -1,0 +1,22 @@
+services:
+  uptimekuma:
+    container_name: uptime-kuma
+    hostname: uptime-kuma.home
+    image: louislam/uptime-kuma:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/containers/uptime-kuma/data:/app/data
+    environment:
+      TZ: Europe/Berlin
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.uptimekuma.entryPoints=websecure"
+      - "traefik.http.routers.uptimekuma.rule=Host(`uptimekuma.home.schndr.cloud`)"
+      - "traefik.http.services.uptimekuma.loadbalancer.server.port=3001"
+networks:
+  dockernet:
+    external: true

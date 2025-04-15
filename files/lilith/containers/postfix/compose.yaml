@@ -1,0 +1,32 @@
+services:
+  postfix:
+    container_name: postfix
+    hostname: postfix.home
+    image: boky/postfix:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    ports:
+      - 25:25
+    volumes:
+      - /opt/containers/postfix/config/smtp_header_checks:/etc/postfix/smtp_header_checks:ro
+    environment:
+      TZ: Europe/Berlin
+      POSTFIX_inet_protocols: ipv4
+      POSTFIX_smtp_tls_security_level: encrypt
+      ALLOW_EMPTY_SENDER_DOMAINS: true
+      SMTP_HEADER_CHECKS: 1
+      RELAYHOST: ${RELAYHOST}
+      RELAYHOST_USERNAME: ${RELAYHOST_USERNAME}
+      RELAYHOST_PASSWORD: ${RELAYHOST_PASSWORD}
+      SMTPD_SASL_USERS: ${SMTPD_SASL_USERS}
+      POSTFIX_smtpd_sasl_auth_enable: "yes"
+      POSTFIX_smtpd_sasl_security_options: "noanonymous"
+      POSTFIX_smtpd_sasl_mechanism_filter: "plain, CRAM-MD5"
+      POSTFIX_smtpd_relay_restrictions: "permit_sasl_authenticated, reject"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.monitor-only=true"
+networks:
+  dockernet:
+    external: true

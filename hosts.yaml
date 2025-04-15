@@ -1,0 +1,19 @@
+---
+#  _   _           _
+# | | | | ___  ___| |_ ___
+# | |_| |/ _ \/ __| __/ __|
+# |  _  | (_) \__ \ |_\__ \
+# |_| |_|\___/|___/\__|___/
+
+
+homelab:
+  hosts:
+    proxmox:
+      ansible_host: 10.10.10.10
+      ansible_user: root
+    pbs:
+      ansible_host: 10.10.10.11
+      ansible_user: root
+    lilith:
+      ansible_host: 10.10.10.254
+      ansible_user: root

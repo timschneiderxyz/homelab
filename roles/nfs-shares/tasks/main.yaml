@@ -1,0 +1,22 @@
+---
+#  _   _ _____ ____    ____  _
+# | \ | |  ___/ ___|  / ___|| |__   __ _ _ __ ___  ___
+# |  \| | |_  \___ \  \___ \| '_ \ / _` | '__/ _ \/ __|
+# | |\  |  _|  ___) |  ___) | | | | (_| | | |  __/\__ \
+# |_| \_|_|   |____/  |____/|_| |_|\__,_|_|  \___||___/
+# Tasks
+
+
+- name: Install NFS client
+  ansible.builtin.apt:
+    name: nfs-common
+    state: present
+
+- name: Mount NFS shares
+  ansible.posix.mount:
+    src: "{{ item.src }}"
+    path: "{{ item.path }}"
+    fstype: nfs
+    opts: "{{ item.opts | default('rw') }}"
+    state: "{{ item.state | default('mounted') }}"
+  loop: "{{ nfs_shares }}"

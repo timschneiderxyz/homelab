@@ -1,0 +1,60 @@
+---
+#   ____            _        _
+#  / ___|___  _ __ | |_ __ _(_)_ __   ___ _ __ ___
+# | |   / _ \| '_ \| __/ _` | | '_ \ / _ \ '__/ __|
+# | |__| (_) | | | | || (_| | | | | |  __/ |  \__ \
+#  \____\___/|_| |_|\__\__,_|_|_| |_|\___|_|  |___/
+# Tasks
+
+
+- name: Check if Docker is installed
+  ansible.builtin.command: which docker
+  register: docker_installed
+  changed_when: "'not found' in docker_installed.stdout"
+
+- name: Docker is not installed message
+  ansible.builtin.debug:
+    msg: Docker is not installed. Please install it.
+  when: docker_installed.changed
+
+- name: Ensure required directories for containers exist
+  ansible.builtin.file:
+    path: "/opt/containers/{{ item.name }}"
+    state: directory
+    owner: root
+    group: root
+  loop: "{{ containers }}"
+
+- name: Copy "compose.yaml" files
+  ansible.builtin.copy:
+    src: "{{ inventory_hostname }}/containers/{{ item.name }}/compose.yaml"
+    dest: "/opt/containers/{{ item.name }}/compose.yaml"
+    owner: root
+    group: root
+  loop: "{{ containers }}"
+  register: copy_containers
+
+- name: Create ".env" files
+  ansible.builtin.copy:
+    dest: "/opt/containers/{{ item.name }}/.env"
+    content: |
+      {% for env_var in item.env_vars %}
+      {{ env_var }}
+      {% endfor %}
+  loop: "{{ containers }}"
+  when: item.env_vars is defined and item.env_vars | length > 0
+  register: copy_containers_env
+
+- name: Start containers
+  ansible.builtin.shell:
+    cmd: |
+      docker compose pull
+      docker compose up -d --remove-orphans
+    chdir: /opt/containers/{{ item.name }}
+  loop: "{{ containers }}"
+  loop_control:
+    index_var: index
+  when:
+    - containers_up
+    - not docker_installed.changed
+    - copy_containers.results[index].changed or copy_containers_env.results[index].changed

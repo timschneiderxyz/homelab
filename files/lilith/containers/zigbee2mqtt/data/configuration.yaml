@@ -1,0 +1,82 @@
+version: 4
+serial:
+  port: tcp://10.10.80.2:6638
+  baudrate: 115200
+  adapter: ember
+mqtt:
+  server: mqtt://mosquitto:1883
+  user: '!secrets.yaml mqtt_user'
+  password: '!secrets.yaml mqtt_password'
+  base_topic: zigbee2mqtt
+advanced:
+  transmit_power: 20
+  log_directory: /app/data/log
+  log_file: '%TIMESTAMP%.log'
+frontend:
+  enabled: true
+homeassistant:
+  enabled: true
+devices:
+  '0x00158d0009762962':
+    friendly_name: Door and Window Sensor 1
+    debounce: 1
+  '0x00158d000974ebfc':
+    friendly_name: Door and Window Sensor 2
+    debounce: 1
+  '0x00158d008b3b427c':
+    friendly_name: Door and Window Sensor 3
+    debounce: 1
+  '0x00158d008b32d7df':
+    friendly_name: Door and Window Sensor 4
+    debounce: 1
+  '0x00158d008b32cc48':
+    friendly_name: Door and Window Sensor 5
+    debounce: 1
+  '0x00178801043374e1':
+    friendly_name: Hue Color Lamp 1
+    transition: 0.5
+  '0x0017880104337451':
+    friendly_name: Hue Color Lamp 2
+    transition: 0.5
+  '0x001788010c0b1d04':
+    friendly_name: Hue Color Lamp 3
+    transition: 0.5
+  '0x001788010c0b4578':
+    friendly_name: Hue Color Lamp 4
+    transition: 0.5
+  '0x00178801085bfda2':
+    friendly_name: Hue Go 1
+    transition: 0.5
+  '0x001788010e1fa36f':
+    friendly_name: Hue Luster 1
+    transition: 0.5
+  '0x001788010e1faa9b':
+    friendly_name: Hue Luster 2
+    transition: 0.5
+  '0x001788010e6bfd3b':
+    friendly_name: Hue Luster 3
+    transition: 0.5
+  '0x001788010e6bfe2e':
+    friendly_name: Hue Luster 4
+    transition: 0.5
+  '0x0017880109e71909':
+    friendly_name: Hue Play Lightbar 1
+    transition: 0.5
+  '0x54ef441000bf607b':
+    friendly_name: Smart Plug 1
+  '0x54ef441000c27acf':
+    friendly_name: Smart Plug 3
+  '0x54ef441000c2ba54':
+    friendly_name: Smart Plug 2
+  '0x54ef441000cc3914':
+    friendly_name: Smart Plug 4
+  '0x54ef441000cc1c25':
+    friendly_name: Smart Plug 5
+  '0x842712fffee445ca':
+    friendly_name: Styrbar 1
+  '0x00158d0009ee8685':
+    friendly_name: Temperature and Humidity Sensor 1
+  '0x00158d008b14f1e7':
+    friendly_name: Temperature and Humidity Sensor 2
+  '0x00158d008afe19bf':
+    friendly_name: Temperature and Humidity Sensor 3

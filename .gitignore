@@ -1,0 +1,8 @@
+# Secrets
+.vault-password
+secrets.yaml
+*.passwd
+
+# Misc
+.vscode/
+.DS_Store

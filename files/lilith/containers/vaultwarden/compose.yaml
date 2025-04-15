@@ -1,0 +1,33 @@
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    hostname: vaultwarden.home
+    image: vaultwarden/server:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /opt/containers/vaultwarden/data:/data
+    environment:
+      TZ: Europe/Berlin
+      # ADMIN_TOKEN: ${ADMIN_TOKEN}
+      TRASH_AUTO_DELETE_DAYS: 30
+      SIGNUPS_ALLOWED: false
+      EMERGENCY_ACCESS_ALLOWED: false
+      PASSWORD_HINTS_ALLOWED: false
+      SMTP_SECURITY: off
+      SMTP_HOST: postfix
+      SMTP_PORT: 25
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_FROM: ${SMTP_FROM}
+      SMTP_FROM_NAME: Vaultwarden
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.vaultwarden.entryPoints=websecure"
+      - "traefik.http.routers.vaultwarden.rule=Host(`vaultwarden.home.schndr.cloud`)"
+      - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
+networks:
+  dockernet:
+    external: true

@@ -1,0 +1,11 @@
+---
+
+- resources:
+    cpu: true
+    cputemp: true
+    tempmin: 0
+    tempmax: 100
+    memory: true
+    disk: /
+    uptime: true
+    refresh: 5000

@@ -1,0 +1,14 @@
+---
+#  ____             _
+# |  _ \  ___   ___| | _____ _ __
+# | | | |/ _ \ / __| |/ / _ \ '__|
+# | |_| | (_) | (__|   <  __/ |
+# |____/ \___/ \___|_|\_\___|_|
+# Defaults
+
+
+docker_gpg_key_url: https://download.docker.com/linux/debian/gpg
+docker_gpg_key_dest: /etc/apt/keyrings/docker.asc
+docker_repo: "deb [arch={{ (ansible_machine == 'x86_64') | ternary('amd64', 'arm64') }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+docker_create_network: true
+docker_network_name: dockernet

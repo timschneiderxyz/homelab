@@ -1,0 +1,171 @@
+- id: styrbar_1
+  alias: Styrbar 1
+  description: Automation for the IKEA Styrbar remote control.
+  mode: single
+  triggers:
+    # Trigger - On
+    - trigger: device
+      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
+      domain: mqtt
+      type: action
+      subtype: 'on'
+      id: styrbar_1_on
+    # Trigger - Brightness move up
+    - trigger: device
+      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
+      domain: mqtt
+      type: action
+      subtype: brightness_move_up
+      id: styrbar_1_brightness_move_up
+    # Trigger - Off
+    - trigger: device
+      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
+      domain: mqtt
+      type: action
+      subtype: 'off'
+      id: styrbar_1_off
+    # Trigger - Brightness move down
+    - trigger: device
+      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
+      domain: mqtt
+      type: action
+      subtype: brightness_move_down
+      id: styrbar_1_brightness_move_down
+    # Trigger - Arrow left click
+    - trigger: device
+      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
+      domain: mqtt
+      type: action
+      subtype: arrow_left_click
+      id: styrbar_1_arrow_left_click
+    # Trigger - Arrow left hold
+    - trigger: device
+      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
+      domain: mqtt
+      type: action
+      subtype: arrow_left_hold
+      id: styrbar_1_arrow_left_hold
+    # Trigger - Arrow right click
+    - trigger: device
+      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
+      domain: mqtt
+      type: action
+      subtype: arrow_right_click
+      id: styrbar_1_arrow_right_click
+    # Trigger - Arrow right hold
+    - trigger: device
+      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
+      domain: mqtt
+      type: action
+      subtype: arrow_right_hold
+      id: styrbar_1_arrow_right_hold
+  conditions: []
+  actions:
+    - choose:
+        # Action - On
+        - conditions:
+            - condition: trigger
+              id: styrbar_1_on
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: light.hue_color_lamp_4
+                      state: 'on'
+                  sequence:
+                    - action: light.turn_off
+                      target:
+                        entity_id: light.hue_color_lamp_4
+                - conditions:
+                    - condition: state
+                      entity_id: light.hue_color_lamp_4
+                      state: 'off'
+                  sequence:
+                    - action: script.light_bright
+                      data:
+                        entity_id: light.hue_color_lamp_4
+        # Action - Brightness move up
+        - conditions:
+            - condition: trigger
+              id: styrbar_1_brightness_move_up
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: template
+                      value_template: >
+                        {% set brightness = state_attr('light.hue_color_lamp_4', 'brightness') %}
+                        {% set xy_color = state_attr('light.hue_color_lamp_4', 'xy_color') %}
+                        {{ brightness == 30 and xy_color[0] == 0.561 and xy_color[1] == 0.4042 }}
+                  sequence:
+                    - action: script.light_bright
+                      data:
+                        entity_id: light.hue_color_lamp_4
+                - conditions: []
+                  sequence:
+                    - action: script.light_night
+                      data:
+                        entity_id: light.hue_color_lamp_4
+        # Action - Off
+        - conditions:
+            - condition: trigger
+              id: styrbar_1_off
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: template
+                      value_template: >
+                        {{ is_state('light.hue_luster_2', 'on') or
+                           is_state('light.hue_luster_3', 'on') or
+                           is_state('light.hue_luster_4', 'on') or
+                           is_state('light.hue_go_1', 'on') }}
+                  sequence:
+                    - action: light.turn_off
+                      target:
+                        entity_id:
+                          - light.hue_luster_2
+                          - light.hue_luster_3
+                          - light.hue_luster_4
+                          - light.hue_go_1
+                - conditions:
+                    - condition: template
+                      value_template: >
+                        {{ is_state('light.hue_luster_2', 'off') or
+                           is_state('light.hue_luster_3', 'off') or
+                           is_state('light.hue_luster_4', 'off') or
+                           is_state('light.hue_go_1', 'off') }}
+                  sequence:
+                    - action: script.light_bright
+                      data:
+                        entity_id:
+                          - light.hue_luster_2
+                          - light.hue_luster_3
+                          - light.hue_luster_4
+                          - light.hue_go_1
+        # Action - Brightness move down
+        - conditions:
+            - condition: trigger
+              id: styrbar_1_brightness_move_down
+          sequence:
+            - action: script.light_night
+              data:
+                entity_id:
+                  - light.hue_luster_2
+                  - light.hue_luster_3
+                  - light.hue_luster_4
+                  - light.hue_go_1
+        # Action - Arrow left click
+        # - conditions:
+        #     - condition: trigger
+        #       id: styrbar_1_arrow_left_click
+        # Action - Arrow left hold
+        # - conditions:
+        #     - condition: trigger
+        #       id: styrbar_1_arrow_left_hold
+        # Action - Arrow right click
+        # - conditions:
+        #     - condition: trigger
+        #       id: styrbar_1_arrow_right_click
+        # Action - Arrow right hold
+        # - conditions:
+        #     - condition: trigger
+        #       id: styrbar_1_arrow_right_hold

@@ -1,0 +1,26 @@
+services:
+  vscode:
+    container_name: vscode
+    hostname: vscode.home
+    image: lscr.io/linuxserver/code-server:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /opt/containers/vscode/data:/config
+      - /opt/containers:/workspace
+    environment:
+      TZ: Europe/Berlin
+      PUID: 0
+      PGID: 0
+      DEFAULT_WORKSPACE: /workspace
+      HASHED_PASSWORD: ${HASHED_PASSWORD}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.vscode.entryPoints=websecure"
+      - "traefik.http.routers.vscode.rule=Host(`vscode.home.schndr.cloud`)"
+      - "traefik.http.services.vscode.loadbalancer.server.port=8443"
+networks:
+  dockernet:
+    external: true

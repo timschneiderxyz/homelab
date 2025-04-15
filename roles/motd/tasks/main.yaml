@@ -1,0 +1,13 @@
+---
+#  __  __  ___ _____ ____
+# |  \/  |/ _ \_   _|  _ \
+# | |\/| | | | || | | | | |
+# | |  | | |_| || | | |_| |
+# |_|  |_|\___/ |_| |____/
+# Tasks
+
+
+- name: Set the message of the day
+  ansible.builtin.copy:
+    content: "{{ motd }}"
+    dest: /etc/motd

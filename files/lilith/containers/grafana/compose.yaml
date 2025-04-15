@@ -1,0 +1,22 @@
+services:
+  grafana:
+    container_name: grafana
+    hostname: grafana.home
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    user: "0"
+    volumes:
+      - /opt/containers/grafana/data:/var/lib/grafana
+    environment:
+      TZ: Europe/Berlin
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.entryPoints=websecure"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.home.schndr.cloud`)"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+networks:
+  dockernet:
+    external: true

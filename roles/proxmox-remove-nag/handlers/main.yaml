@@ -1,0 +1,26 @@
+---
+#  ____
+# |  _ \ _ __ _____  ___ __ ___   _____  __  _ __ ___ _ __ ___   _____   _____   _ __   __ _  __ _
+# | |_) | '__/ _ \ \/ / '_ ` _ \ / _ \ \/ / | '__/ _ \ '_ ` _ \ / _ \ \ / / _ \ | '_ \ / _` |/ _` |
+# |  __/| | | (_) >  <| | | | | | (_) >  <  | | |  __/ | | | | | (_) \ V /  __/ | | | | (_| | (_| |
+# |_|   |_|  \___/_/\_\_| |_| |_|\___/_/\_\ |_|  \___|_| |_| |_|\___/ \_/ \___| |_| |_|\__,_|\__, |
+#                                                                                            |___/
+# Handlers
+
+
+- name: Check if system is Proxmox VE or Proxmox Backup Server
+  ansible.builtin.shell: |
+    if [ -d /etc/pve ]; then
+      echo "Proxmox VE"
+    elif [ -d /etc/proxmox-backup ]; then
+      echo "Proxmox Backup Server"
+    else
+      echo "Unknown"
+    fi
+  register: proxmox_system
+
+- name: Restart pveproxy or proxmox-backup-proxy service
+  ansible.builtin.service:
+    name: "{{ 'pveproxy' if proxmox_system.stdout == 'Proxmox VE' else 'proxmox-backup-proxy' }}"
+    state: restarted
+  when: proxmox_system.stdout != "Unknown"

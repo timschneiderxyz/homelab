@@ -1,0 +1,27 @@
+---
+#  _____     _ _               _
+# |_   _|_ _(_) |___  ___ __ _| | ___
+#   | |/ _` | | / __|/ __/ _` | |/ _ \
+#   | | (_| | | \__ \ (_| (_| | |  __/
+#   |_|\__,_|_|_|___/\___\__,_|_|\___|
+# Tasks
+
+
+- name: Add Tailscale GPG key
+  ansible.builtin.get_url:
+    url: "{{ tailscale_gpg_key_url }}"
+    dest: "{{ tailscale_gpg_key_dest }}"
+    mode: '0644'
+    force: true
+
+- name: Add Tailscale repository
+  ansible.builtin.apt_repository:
+    repo: "{{ tailscale_repo }}"
+    filename: tailscale
+    state: present
+
+- name: Install Tailscale
+  ansible.builtin.apt:
+    name:
+      - tailscale
+    state: present

@@ -1,0 +1,48 @@
+http:
+  routers:
+    proxmox:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`proxmox.home.schndr.cloud`)"
+      service: proxmox
+    pbs:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`pbs.home.schndr.cloud`)"
+      service: pbs
+    monty:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`monty.home.schndr.cloud`)"
+      service: monty
+    aria:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`aria.home.schndr.cloud`)"
+      service: aria
+    slzb:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`slzb.home.schndr.cloud`)"
+      service: slzb
+  services:
+    proxmox:
+      loadBalancer:
+        servers:
+          - url: "https://10.10.10.10:8006"
+    pbs:
+      loadBalancer:
+        servers:
+          - url: "https://10.10.10.11:8007"
+    monty:
+      loadBalancer:
+        servers:
+          - url: "http://10.10.10.20"
+    aria:
+      loadBalancer:
+        servers:
+          - url: "http://100.118.182.87"
+    slzb:
+      loadBalancer:
+        servers:
+          - url: "http://10.10.80.2"

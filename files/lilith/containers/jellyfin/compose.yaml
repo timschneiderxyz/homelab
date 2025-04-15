@@ -1,0 +1,26 @@
+services:
+  jellyfin:
+    container_name: jellyfin
+    hostname: jellyfin.home
+    image: lscr.io/linuxserver/jellyfin:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    # devices:
+    #   - /dev/dri:/dev/dri
+    volumes:
+      - /opt/containers/jellyfin/config:/config
+      - /mnt/movies:/data/movies
+      - /mnt/series:/data/series
+    environment:
+      TZ: Europe/Berlin
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyfin.entryPoints=websecure"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.home.schndr.cloud`)"
+      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
+networks:
+  dockernet:
+    external: true

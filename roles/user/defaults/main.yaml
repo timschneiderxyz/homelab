@@ -1,0 +1,12 @@
+---
+#  _   _
+# | | | |___  ___ _ __
+# | | | / __|/ _ \ '__|
+# | |_| \__ \  __/ |
+#  \___/|___/\___|_|
+# Defaults
+
+
+user_name: root
+user_password: '*'
+user_path: "{{ (user_name == 'root') | ternary('/root/', '/home/' + user_name + '/') }}"
