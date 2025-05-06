@@ -74,6 +74,8 @@ devices:
     friendly_name: Smart Plug 5
   '0x842712fffee445ca':
     friendly_name: Styrbar 1
+  '0x0cae5ffffec517b5':
+    friendly_name: Styrbar 2
   '0x00158d0009ee8685':
     friendly_name: Temperature and Humidity Sensor 1
   '0x00158d008b14f1e7':

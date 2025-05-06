@@ -1,4 +1,4 @@
-# Bright
+# Light - Bright
 light_bright:
   alias: Light Bright
   description: Set the light to a bright white color.
@@ -14,7 +14,7 @@ light_bright:
         brightness: 255
         xy_color: [0.505, 0.385]
 
-# Night
+# Light - Night
 light_night:
   alias: Light Night
   description: Set the light to a dim warm color.

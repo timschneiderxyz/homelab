@@ -104,6 +104,12 @@
         description: Bookmark Manager
         server: docker
         container: linkding
+    - n8n:
+        href: https://n8n.home.schndr.cloud
+        icon: n8n
+        description: Workflow Automation
+        server: docker
+        container: n8n
     - Outline:
         href: https://outline.home.schndr.cloud
         icon: outline

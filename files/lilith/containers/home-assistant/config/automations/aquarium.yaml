@@ -5,43 +5,43 @@
   triggers:
     - trigger: time
       at: '10:00:00'
+      id: aquarium_on_1
     - trigger: time
       at: '14:00:00'
+      id: aquarium_off_1
     - trigger: time
       at: '16:00:00'
+      id: aquarium_on_2
     - trigger: time
       at: '19:00:00'
+      id: aquarium_off_2
   conditions: []
   actions:
     - choose:
         - conditions:
-            - condition: time
-              after: '10:00:00'
-              before: '14:00:00'
+            - condition: trigger
+              id: aquarium_on_1
           sequence:
             - action: switch.turn_on
               target:
                 entity_id: switch.smart_plug_4
         - conditions:
-            - condition: time
-              after: '14:00:00'
-              before: '16:00:00'
+            - condition: trigger
+              id: aquarium_off_1
           sequence:
             - action: switch.turn_off
               target:
                 entity_id: switch.smart_plug_4
         - conditions:
-            - condition: time
-              after: '16:00:00'
-              before: '19:00:00'
+            - condition: trigger
+              id: aquarium_on_2
           sequence:
             - action: switch.turn_on
               target:
                 entity_id: switch.smart_plug_4
         - conditions:
-            - condition: time
-              after: '19:00:00'
-              before: '10:00:00'
+            - condition: trigger
+              id: aquarium_off_2
           sequence:
             - action: switch.turn_off
               target:
