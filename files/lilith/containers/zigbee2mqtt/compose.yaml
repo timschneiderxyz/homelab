@@ -7,7 +7,7 @@ services:
     networks:
       - dockernet
     volumes:
-      - /opt/containers/zigbee2mqtt/data:/app/data
+      - ./data:/app/data
     environment:
       TZ: Europe/Berlin
     labels:

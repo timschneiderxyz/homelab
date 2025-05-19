@@ -11,10 +11,10 @@ services:
       - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /opt/containers/traefik/config/traefik.yaml:/etc/traefik/traefik.yaml:ro
-      - /opt/containers/traefik/config/config.yaml:/etc/traefik/config.yaml:ro
-      - /opt/containers/traefik/config/acme.json:/etc/traefik/acme.json
-      - /opt/containers/traefik/log:/var/log/traefik
+      - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ./config/config.yaml:/etc/traefik/config.yaml:ro
+      - ./config/acme.json:/etc/traefik/acme.json
+      - ./log:/var/log/traefik
     environment:
       TZ: Europe/Berlin
       CF_API_EMAIL: ${CF_API_EMAIL}

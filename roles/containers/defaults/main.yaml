@@ -7,5 +7,6 @@
 # Defaults
 
 
+containers_path: /opt/containers
 containers_up: true
 containers: []

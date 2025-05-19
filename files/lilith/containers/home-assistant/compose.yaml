@@ -7,7 +7,7 @@ services:
     networks:
       - dockernet
     volumes:
-      - /opt/containers/home-assistant/config:/config
+      - ./config:/config
     environment:
       TZ: Europe/Berlin
     labels:

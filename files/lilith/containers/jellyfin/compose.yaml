@@ -9,7 +9,7 @@ services:
     # devices:
     #   - /dev/dri:/dev/dri
     volumes:
-      - /opt/containers/jellyfin/config:/config
+      - ./config:/config
       - /mnt/movies:/data/movies
       - /mnt/series:/data/series
     environment:

@@ -7,7 +7,7 @@ services:
     networks:
       - dockernet
     volumes:
-      - /opt/containers/linkding/data:/etc/linkding/data
+      - ./data:/etc/linkding/data
     environment:
       TZ: Europe/Berlin
       LD_SUPERUSER_NAME: ${LD_SUPERUSER_NAME}

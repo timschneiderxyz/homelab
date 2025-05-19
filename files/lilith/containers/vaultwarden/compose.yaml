@@ -7,7 +7,7 @@ services:
     networks:
       - dockernet
     volumes:
-      - /opt/containers/vaultwarden/data:/data
+      - ./data:/data
     environment:
       TZ: Europe/Berlin
       # ADMIN_TOKEN: ${ADMIN_TOKEN}

@@ -10,7 +10,7 @@ services:
     networks:
       - dockernet
     volumes:
-      - /opt/containers/outline/data:/var/lib/outline/data
+      - ./data:/var/lib/outline/data
     environment:
       TZ: Europe/Berlin
       URL: https://outline.home.schndr.cloud
@@ -47,7 +47,7 @@ services:
     networks:
       - dockernet
     volumes:
-      - /opt/containers/outline/redis:/data
+      - ./redis:/data
     environment:
       TZ: Europe/Berlin
     labels:
@@ -60,7 +60,7 @@ services:
     networks:
       - dockernet
     volumes:
-      - /opt/containers/outline/postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data
     environment:
       TZ: Europe/Berlin
       POSTGRES_DB: outline

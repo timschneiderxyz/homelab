@@ -9,7 +9,7 @@ services:
     ports:
       - 25:25
     volumes:
-      - /opt/containers/postfix/config/smtp_header_checks:/etc/postfix/smtp_header_checks:ro
+      - ./config/smtp_header_checks:/etc/postfix/smtp_header_checks:ro
     environment:
       TZ: Europe/Berlin
       POSTFIX_inet_protocols: ipv4

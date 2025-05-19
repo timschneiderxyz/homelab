@@ -12,8 +12,8 @@ services:
       - dockernet
     user: "0"
     volumes:
-      - /opt/containers/authentik/media:/media
-      - /opt/containers/authentik/templates:/templates
+      - ./media:/media
+      - ./templates:/templates
     environment:
       TZ: Europe/Berlin
       AUTHENTIK_DISABLE_STARTUP_ANALYTICS: true
@@ -49,9 +49,9 @@ services:
       - dockernet
     user: "0"
     volumes:
-      - /opt/containers/authentik/media:/media
-      - /opt/containers/authentik/templates:/templates
-      - /opt/containers/authentik/certs:/certs
+      - ./media:/media
+      - ./templates:/templates
+      - ./certs:/certs
     environment:
       TZ: Europe/Berlin
       AUTHENTIK_DISABLE_STARTUP_ANALYTICS: true
@@ -78,7 +78,7 @@ services:
     networks:
       - dockernet
     volumes:
-      - /opt/containers/authentik/redis:/data
+      - ./redis:/data
     environment:
       TZ: Europe/Berlin
     labels:
@@ -92,7 +92,7 @@ services:
     networks:
       - dockernet
     volumes:
-      - /opt/containers/authentik/postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data
     environment:
       TZ: Europe/Berlin
       POSTGRES_DB: authentik

@@ -7,7 +7,7 @@ services:
     networks:
       - dockernet
     volumes:
-      - /opt/containers/vscode/data:/config
+      - ./data:/config
       - /opt/containers:/workspace
     environment:
       TZ: Europe/Berlin
