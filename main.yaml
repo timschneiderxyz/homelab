@@ -58,3 +58,17 @@
       tags: run
     - role: containers
       tags: [ run, update ]
+
+# Qbert
+- hosts: qbert
+  vars_files:
+    - 'vars/vault.yaml'
+  roles:
+    - role: packages
+      tags: [ run, update ]
+    - role: user
+      tags: [ run, update ]
+    - role: motd
+      tags: run
+    - role: secure-ssh
+      tags: run

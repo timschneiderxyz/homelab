@@ -14,15 +14,18 @@
     upgrade: yes
     autoremove: true
     autoclean: true
+  become: true
 
 - name: Install packages
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
   loop: "{{ add_packages }}"
+  become: true
 
 - name: Remove packages
   ansible.builtin.apt:
     name: "{{ item }}"
     state: absent
   loop: "{{ remove_packages }}"
+  become: true

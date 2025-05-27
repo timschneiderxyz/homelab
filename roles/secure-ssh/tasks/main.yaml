@@ -17,4 +17,5 @@
       line: PermitRootLogin prohibit-password
     - regexp: ^PasswordAuthentication
       line: PasswordAuthentication no
+  become: true
   notify: Restart sshd service

@@ -17,3 +17,6 @@ homelab:
     lilith:
       ansible_host: 10.10.10.254
       ansible_user: root
+    qbert:
+      ansible_host: 10.10.10.22
+      ansible_user: admin
