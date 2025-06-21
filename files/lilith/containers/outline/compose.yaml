@@ -34,7 +34,6 @@ services:
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       SMTP_FROM_EMAIL: ${SMTP_FROM_EMAIL}
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
       - "traefik.http.routers.outline.entryPoints=websecure"
       - "traefik.http.routers.outline.rule=Host(`outline.home.schndr.cloud`)"
@@ -50,8 +49,6 @@ services:
       - ./redis:/data
     environment:
       TZ: Europe/Berlin
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
   outline-postgres:
     container_name: outline-postgres
     hostname: outline-postgres.home
@@ -66,8 +63,6 @@ services:
       POSTGRES_DB: outline
       POSTGRES_USER: outline
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
 networks:
   dockernet:
     external: true

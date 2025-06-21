@@ -15,7 +15,6 @@ services:
     environment:
       TZ: Europe/Berlin
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "com.centurylinklabs.watchtower.monitor-only=true"
 networks:
   dockernet:

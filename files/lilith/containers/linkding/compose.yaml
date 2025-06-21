@@ -13,7 +13,6 @@ services:
       LD_SUPERUSER_NAME: ${LD_SUPERUSER_NAME}
       LD_SUPERUSER_PASSWORD: ${LD_SUPERUSER_PASSWORD}
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
       - "traefik.http.routers.linkding.entryPoints=websecure"
       - "traefik.http.routers.linkding.rule=Host(`linkding.home.schndr.cloud`)"

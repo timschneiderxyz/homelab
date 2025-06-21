@@ -20,7 +20,6 @@ services:
       CF_API_EMAIL: ${CF_API_EMAIL}
       CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "com.centurylinklabs.watchtower.monitor-only=true"
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entryPoints=websecure"

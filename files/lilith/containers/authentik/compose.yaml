@@ -30,7 +30,6 @@ services:
       AUTHENTIK_EMAIL__PASSWORD: ${AUTHENTIK_EMAIL__PASSWORD}
       AUTHENTIK_EMAIL__FROM: ${AUTHENTIK_EMAIL__FROM}
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "com.centurylinklabs.watchtower.monitor-only=true"
       - "traefik.enable=true"
       - "traefik.http.routers.authentik.entryPoints=websecure"
@@ -68,7 +67,6 @@ services:
       AUTHENTIK_EMAIL__PASSWORD: ${AUTHENTIK_EMAIL__PASSWORD}
       AUTHENTIK_EMAIL__FROM: ${AUTHENTIK_EMAIL__FROM}
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "com.centurylinklabs.watchtower.monitor-only=true"
   authentik-redis:
     container_name: authentik-redis
@@ -82,7 +80,6 @@ services:
     environment:
       TZ: Europe/Berlin
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "com.centurylinklabs.watchtower.monitor-only=true"
   authentik-postgres:
     container_name: authentik-postgres
@@ -99,7 +96,6 @@ services:
       POSTGRES_USER: authentik
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "com.centurylinklabs.watchtower.monitor-only=true"
 networks:
   dockernet:

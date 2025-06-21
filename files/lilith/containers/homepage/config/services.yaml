@@ -27,12 +27,6 @@
         description: Backup NAS
         ping: 100.118.182.87
 - Administration:
-    - Portainer (Lilith):
-        href: https://portainer.home.schndr.cloud
-        icon: portainer
-        description: Docker Container
-        server: docker
-        container: portainer
     - Pi-Hole:
         href: https://pihole.home.schndr.cloud/admin
         icon: pi-hole
@@ -57,6 +51,12 @@
         description: Code Editor
         server: docker
         container: vscode
+    - Portainer (Lilith):
+        href: https://portainer.home.schndr.cloud
+        icon: portainer
+        description: Docker Container
+        server: docker
+        container: portainer
 - Smart Home:
     - Home Assistant:
         href: https://homeassistant.home.schndr.cloud

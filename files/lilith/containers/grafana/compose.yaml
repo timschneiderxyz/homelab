@@ -12,7 +12,6 @@ services:
     environment:
       TZ: Europe/Berlin
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.entryPoints=websecure"
       - "traefik.http.routers.grafana.rule=Host(`grafana.home.schndr.cloud`)"

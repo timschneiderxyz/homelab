@@ -12,7 +12,6 @@ services:
     environment:
       TZ: Europe/Berlin
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
       - "traefik.http.routers.uptimekuma.entryPoints=websecure"
       - "traefik.http.routers.uptimekuma.rule=Host(`uptimekuma.home.schndr.cloud`)"

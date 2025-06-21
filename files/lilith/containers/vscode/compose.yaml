@@ -16,7 +16,6 @@ services:
       DEFAULT_WORKSPACE: /workspace
       HASHED_PASSWORD: ${HASHED_PASSWORD}
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
       - "traefik.http.routers.vscode.entryPoints=websecure"
       - "traefik.http.routers.vscode.rule=Host(`vscode.home.schndr.cloud`)"

@@ -23,7 +23,6 @@ services:
       SMTP_FROM: ${SMTP_FROM}
       SMTP_FROM_NAME: Vaultwarden
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
       - "traefik.http.routers.vaultwarden.entryPoints=websecure"
       - "traefik.http.routers.vaultwarden.rule=Host(`vaultwarden.home.schndr.cloud`)"

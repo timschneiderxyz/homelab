@@ -15,8 +15,6 @@ services:
     environment:
       TZ: Europe/Berlin
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      - "com.centurylinklabs.watchtower.monitor-only=true"
       - "traefik.enable=true"
       - "traefik.http.routers.jellyfin.entryPoints=websecure"
       - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.home.schndr.cloud`)"

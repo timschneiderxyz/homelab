@@ -21,8 +21,6 @@ services:
       N8N_DIAGNOSTICS_CONFIG_BACKEND:
       EXTERNAL_FRONTEND_HOOKS_URLS:
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      - "com.centurylinklabs.watchtower.monitor-only=true"
       - "traefik.enable=true"
       - "traefik.http.routers.n8n.entryPoints=websecure"
       - "traefik.http.routers.n8n.rule=Host(`n8n.home.schndr.cloud`)"
