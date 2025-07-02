@@ -37,6 +37,36 @@ sections:
         hide_state: true
         features:
           - type: light-brightness
+      - type: button
+        entity: switch.smart_plug_5
+        name: Steckdose
+        icon: mdi:power-socket-eu
+        icon_height: 42px
+        show_state: true
+        tap_action:
+          action: toggle
+        grid_options:
+          columns: full
+  - type: grid
+    column_span: 1
+    cards:
+      - type: heading
+        heading: Esszimmer
+        icon: mdi:silverware-variant
+      - type: tile
+        entity: binary_sensor.door_and_window_sensor_3_contact
+        name: Fenster
+        color: teal
+        grid_options:
+          columns: full
+      - type: tile
+        entity: light.hue_color_lamp_3
+        name: Deckenlampe
+        hide_state: true
+        features:
+          - type: light-brightness
+        grid_options:
+          columns: full
   - type: grid
     column_span: 1
     cards:
@@ -61,26 +91,6 @@ sections:
         hide_state: true
         features:
           - type: light-brightness
-  - type: grid
-    column_span: 1
-    cards:
-      - type: heading
-        heading: Esszimmer
-        icon: mdi:silverware-variant
-      - type: tile
-        entity: binary_sensor.door_and_window_sensor_3_contact
-        name: Fenster
-        color: teal
-        grid_options:
-          columns: full
-      - type: tile
-        entity: light.hue_color_lamp_3
-        name: Deckenlampe
-        hide_state: true
-        features:
-          - type: light-brightness
-        grid_options:
-          columns: full
   - type: grid
     column_span: 1
     cards:
@@ -159,6 +169,24 @@ sections:
     column_span: 1
     cards:
       - type: heading
+        heading: Außen
+        icon: mdi:weather-partly-cloudy
+      - type: sensor
+        entity: sensor.temperature_and_humidity_sensor_4_temperature
+        name: Temperatur
+        icon: mdi:thermometer
+        graph: line
+        detail: 2
+      - type: sensor
+        entity: sensor.temperature_and_humidity_sensor_4_humidity
+        name: Luftfeuchtigkeit
+        icon: mdi:water-percent
+        graph: line
+        detail: 2
+  - type: grid
+    column_span: 1
+    cards:
+      - type: heading
         heading: Stromverbrauch
         icon: mdi:lightning-bolt
       - type: sensor
@@ -199,31 +227,3 @@ sections:
         icon: mdi:power-socket-eu
         graph: line
         detail: 2
-  - type: grid
-    column_span: 1
-    cards:
-      - type: heading
-        heading: Misc
-        icon: mdi:tools
-      - type: button
-        entity: light.led_matrix
-        name: LED-Matrix
-        icon_height: 42px
-        show_state: true
-        tap_action:
-          action: toggle
-      - type: button
-        entity: switch.smart_plug_5
-        name: Steckdose
-        icon: mdi:power-socket-eu
-        icon_height: 42px
-        show_state: true
-        tap_action:
-          action: toggle
-      - type: button
-        entity: switch.zigbee2mqtt_bridge_permit_join
-        name: Zigbee anlernen
-        icon_height: 42px
-        show_state: true
-        tap_action:
-          action: toggle

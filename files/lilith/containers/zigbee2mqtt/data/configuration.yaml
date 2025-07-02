@@ -82,3 +82,5 @@ devices:
     friendly_name: Temperature and Humidity Sensor 2
   '0x00158d008afe19bf':
     friendly_name: Temperature and Humidity Sensor 3
+  '0x00158d008b64a58c':
+    friendly_name: Temperature and Humidity Sensor 4
