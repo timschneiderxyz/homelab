@@ -13,9 +13,8 @@ motd: "  _     _ _ _ _   _ \n
   |_____|_|_|_|\\__|_| |_| \n
   \n"
 
-add_packages:
-  - qemu-guest-agent
-  - curl
+packages:
+  - name: qemu-guest-agent
 
 nfs_shares: "{{ lilith_nfs_shares }}"
 

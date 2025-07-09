@@ -12,7 +12,7 @@
     name: nfs-common
     state: present
 
-- name: Mount NFS shares
+- name: Setup NFS shares
   ansible.posix.mount:
     src: "{{ item.src }}"
     path: "{{ item.path }}"

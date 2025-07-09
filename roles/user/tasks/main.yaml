@@ -68,6 +68,7 @@
     - zsh
     - git
     - neovim
+    - curl
   become: true
 
 - name: Change user shell to zsh

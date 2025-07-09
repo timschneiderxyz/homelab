@@ -54,7 +54,7 @@
     - Portainer (Lilith):
         href: https://portainer.home.schndr.cloud
         icon: portainer
-        description: Docker Container
+        description: Container Management
         server: docker
         container: portainer
 - Smart Home:

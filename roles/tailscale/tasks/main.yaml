@@ -22,6 +22,5 @@
 
 - name: Install Tailscale
   ansible.builtin.apt:
-    name:
-      - tailscale
+    name: tailscale
     state: present

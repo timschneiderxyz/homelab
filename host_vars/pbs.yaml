@@ -14,7 +14,7 @@ motd: "  ____  ____ ____ \n
   |_|   |____/____/ \n
   \n"
 
-add_packages:
-  - qemu-guest-agent
+packages:
+  - name: qemu-guest-agent
 
 nfs_shares: "{{ pbs_nfs_shares }}"

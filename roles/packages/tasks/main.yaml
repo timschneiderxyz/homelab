@@ -16,16 +16,9 @@
     autoclean: true
   become: true
 
-- name: Install packages
+- name: Setup packages
   ansible.builtin.apt:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ add_packages }}"
-  become: true
-
-- name: Remove packages
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    state: absent
-  loop: "{{ remove_packages }}"
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  loop: "{{ packages }}"
   become: true

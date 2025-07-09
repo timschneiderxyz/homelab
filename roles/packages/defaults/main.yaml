@@ -8,5 +8,4 @@
 # Defaults
 
 
-add_packages: []
-remove_packages: []
+packages: []
