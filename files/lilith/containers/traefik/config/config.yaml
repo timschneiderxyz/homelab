@@ -1,5 +1,10 @@
 http:
   routers:
+    unifi:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`unifi.home.schndr.cloud`)"
+      service: unifi
     proxmox:
       entryPoints:
         - "websecure"
@@ -26,6 +31,10 @@ http:
       rule: "Host(`slzb.home.schndr.cloud`)"
       service: slzb
   services:
+    unifi:
+      loadBalancer:
+        servers:
+          - url: "https://10.10.10.1"
     proxmox:
       loadBalancer:
         servers:

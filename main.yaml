@@ -37,6 +37,20 @@
     - role: nfs-shares
       tags: [ run, update ]
 
+# Qbert
+- hosts: qbert
+  vars_files:
+    - 'vars/vault.yaml'
+  roles:
+    - role: secure-ssh
+      tags: run
+    - role: motd
+      tags: run
+    - role: packages
+      tags: [ run, update ]
+    - role: user
+      tags: [ run, update ]
+
 # Lilith
 - hosts: lilith
   vars_files:
@@ -57,18 +71,4 @@
     - role: nfs-shares
       tags: [ run, update ]
     - role: containers
-      tags: [ run, update ]
-
-# Qbert
-- hosts: qbert
-  vars_files:
-    - 'vars/vault.yaml'
-  roles:
-    - role: secure-ssh
-      tags: run
-    - role: motd
-      tags: run
-    - role: packages
-      tags: [ run, update ]
-    - role: user
       tags: [ run, update ]

@@ -2,7 +2,7 @@
 
 - Infrastructure:
     - UniFi:
-        href: http://10.10.10.1
+        href: https://unifi.home.schndr.cloud
         icon: unifi
         description: Network Management
         ping: 10.10.10.1

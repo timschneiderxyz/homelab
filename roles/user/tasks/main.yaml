@@ -86,6 +86,7 @@
     - .bashrc
     - .bash_logout
     - .bash_history
+    - .lesshst
 
 - name: Ensure required user directories exist
   ansible.builtin.file:
