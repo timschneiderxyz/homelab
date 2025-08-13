@@ -15,7 +15,7 @@ services:
     environment:
       TZ: Europe/Berlin
       FTLCONF_webserver_api_password: ${FTLCONF_webserver_api_password}
-      FTLCONF_dns_upstreams: 1.1.1.1;1.0.0.1
+      FTLCONF_dns_upstreams: 1.1.1.1;1.0.0.1;8.8.8.8;8.8.4.4
       FTLCONF_dns_listeningMode: 'all'
     labels:
       - "com.centurylinklabs.watchtower.monitor-only=true"

@@ -11,13 +11,11 @@ alias \
   ..="cd .." \
   ...="cd ../.." \
   ....="cd ../../.." \
-  ls="ls -hN --color=auto --group-directories-first" \
-  ll="ls -al" \
+  ls="ls --color=auto --group-directories-first -Nhla" \
   mkd="mkdir -vp" \
   cp="cp -vi" \
   mv="mv -vi" \
   rm="rm -vI" \
-  grep="grep --color=auto"
 
 # Apps
 alias \
