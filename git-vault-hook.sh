@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Script that installs a Git pre-commit hook that prevents an unencrypted
-# Ansible Vault file from being committed.
+# Script that installs a Git pre-commit hook that prevents an unencrypted Ansible Vault file from being committed.
 
 if [ -d .git/ ]; then
 [ -f .git/hooks/pre-commit ] && rm .git/hooks/pre-commit

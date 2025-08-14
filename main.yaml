@@ -13,13 +13,13 @@
     - 'vars/vault.yaml'
   roles:
     - role: secure-ssh
-      tags: run
+      tags: init
     - role: motd
-      tags: run
+      tags: init
     - role: packages
-      tags: [ run, update ]
+      tags: [ init, update ]
     - role: proxmox-remove-nag
-      tags: [ run, update ]
+      tags: [ init, update ]
 
 # Proxmox Backup Server
 - hosts: pbs
@@ -27,15 +27,15 @@
     - 'vars/vault.yaml'
   roles:
     - role: secure-ssh
-      tags: run
+      tags: init
     - role: motd
-      tags: run
+      tags: init
     - role: packages
-      tags: [ run, update ]
+      tags: [ init, update ]
     - role: proxmox-remove-nag
-      tags: [ run, update ]
+      tags: [ init, update ]
     - role: nfs-shares
-      tags: [ run, update ]
+      tags: [ init, update ]
 
 # Qbert
 - hosts: qbert
@@ -43,13 +43,15 @@
     - 'vars/vault.yaml'
   roles:
     - role: secure-ssh
-      tags: run
+      tags: init
     - role: motd
-      tags: run
+      tags: init
     - role: packages
-      tags: [ run, update ]
+      tags: [ init, update ]
     - role: user
-      tags: [ run, update ]
+      tags: [ init, update ]
+    # - role: nut
+    #   tags: init
 
 # Lilith
 - hosts: lilith
@@ -57,18 +59,18 @@
     - 'vars/vault.yaml'
   roles:
     - role: secure-ssh
-      tags: run
+      tags: init
     - role: motd
-      tags: run
+      tags: init
     - role: packages
-      tags: [ run, update ]
+      tags: [ init, update ]
     - role: user
-      tags: [ run, update ]
+      tags: [ init, update ]
     - role: tailscale
-      tags: run
+      tags: init
     - role: docker
-      tags: run
+      tags: init
     - role: nfs-shares
-      tags: [ run, update ]
+      tags: [ init, update ]
     - role: containers
-      tags: [ run, update ]
+      tags: [ init, update ]
