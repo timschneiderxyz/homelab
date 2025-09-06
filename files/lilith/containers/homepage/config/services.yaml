@@ -45,18 +45,18 @@
         description: Identity Provider
         server: docker
         container: authentik
+    - Portainer:
+        href: https://portainer.home.schndr.cloud
+        icon: portainer
+        description: Container Management
+        server: docker
+        container: portainer
     - VS Code:
         href: https://vscode.home.schndr.cloud
         icon: vscode
         description: Code Editor
         server: docker
         container: vscode
-    - Portainer (Lilith):
-        href: https://portainer.home.schndr.cloud
-        icon: portainer
-        description: Container Management
-        server: docker
-        container: portainer
 - Smart Home:
     - Home Assistant:
         href: https://homeassistant.home.schndr.cloud
@@ -80,11 +80,16 @@
         icon: shelly
         description: Power Consumption Meter
         ping: 10.10.80.3
-    - LED-Matrix:
-        href: http://10.10.80.80
-        icon: wled
-        description: WLED
-        ping: 10.10.80.80
+    - Shelly 2PM Gen4 (Schlafzimmer):
+        href: http://10.10.80.20
+        icon: shelly
+        description: Relais
+        ping: 10.10.80.20
+    # - LED-Matrix:
+    #     href: http://10.10.80.80
+    #     icon: wled
+    #     description: WLED
+    #     ping: 10.10.80.80
 - Services:
     - Grafana:
         href: https://grafana.home.schndr.cloud

@@ -1,25 +1,23 @@
 services:
   n8n:
     container_name: n8n
-    image: n8nio/n8n
-    restart: unless-stopped
     hostname: n8n.home
+    image: n8nio/n8n:latest
+    restart: unless-stopped
     networks:
       - dockernet
-    user: "0"
     volumes:
       - ./data:/home/node/.n8n
     environment:
       TZ: Europe/Berlin
       GENERIC_TIMEZONE: Europe/Berlin
-      QUEUE_HEALTH_CHECK_ACTIVE: true
-      N8N_METRICS: true
+      N8N_RUNNERS_ENABLED: true
       N8N_VERSION_NOTIFICATIONS_ENABLED: false
-      N8N_TEMPLATES_ENABLED: false
       N8N_DIAGNOSTICS_ENABLED: false
       N8N_DIAGNOSTICS_CONFIG_FRONTEND:
       N8N_DIAGNOSTICS_CONFIG_BACKEND:
       EXTERNAL_FRONTEND_HOOKS_URLS:
+      DB_SQLITE_POOL_SIZE: 5
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.n8n.entryPoints=websecure"

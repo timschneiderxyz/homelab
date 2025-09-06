@@ -8,6 +8,8 @@ motd: "  _     _ _ _ _   _ \n
 
 packages:
   - name: qemu-guest-agent
+  - name: firmware-misc-nonfree
+  - name: intel-gpu-tools
 
 nfs_shares: "{{ lilith_nfs_shares }}"
 

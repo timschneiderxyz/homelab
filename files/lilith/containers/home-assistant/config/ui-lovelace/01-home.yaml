@@ -113,6 +113,13 @@ sections:
         grid_options:
           columns: full
       - type: tile
+        entity: cover.shelly_2pm_gen4_schlafzimmer
+        name: Rollladen
+        features:
+          - type: cover-open-close
+        grid_options:
+          columns: full
+      - type: tile
         entity: light.hue_color_lamp_4
         name: Deckenlampe
         hide_state: true

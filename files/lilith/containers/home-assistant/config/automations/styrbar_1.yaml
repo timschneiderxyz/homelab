@@ -120,6 +120,15 @@
             - condition: trigger
               id: styrbar_1_arrow_left_click
           sequence:
+            - action: >
+                {% if is_state('cover.shelly_2pm_gen4_schlafzimmer', 'opening')
+                   or is_state('cover.shelly_2pm_gen4_schlafzimmer', 'closing') %}
+                  cover.stop_cover
+                {% else %}
+                  cover.open_cover
+                {% endif %}
+              target:
+                entity_id: cover.shelly_2pm_gen4_schlafzimmer
         # Action - Arrow left hold
         - conditions:
             - condition: trigger
@@ -130,6 +139,15 @@
             - condition: trigger
               id: styrbar_1_arrow_right_click
           sequence:
+            - action: >
+                {% if is_state('cover.shelly_2pm_gen4_schlafzimmer', 'opening')
+                   or is_state('cover.shelly_2pm_gen4_schlafzimmer', 'closing') %}
+                  cover.stop_cover
+                {% else %}
+                  cover.close_cover
+                {% endif %}
+              target:
+                entity_id: cover.shelly_2pm_gen4_schlafzimmer
         # Action - Arrow right hold
         - conditions:
             - condition: trigger

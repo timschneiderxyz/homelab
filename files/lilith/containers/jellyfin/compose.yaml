@@ -2,14 +2,15 @@ services:
   jellyfin:
     container_name: jellyfin
     hostname: jellyfin.home
-    image: lscr.io/linuxserver/jellyfin:latest
+    image: ghcr.io/jellyfin/jellyfin:latest
     restart: unless-stopped
     networks:
       - dockernet
-    # devices:
-    #   - /dev/dri:/dev/dri
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
     volumes:
       - ./config:/config
+      - ./cache:/cache
       - /mnt/movies:/data/movies
       - /mnt/series:/data/series
     environment:
