@@ -16,14 +16,14 @@
         icon: proxmox
         description: Backup VMs
         ping: 10.10.10.11
-    - TrueNAS Scale (Monty):
+    - TrueNAS (Monty):
         href: https://monty.home.schndr.cloud
-        icon: truenas-scale
+        icon: truenas
         description: NAS
         ping: 10.10.10.20
-    - TrueNAS Scale (Aria):
+    - TrueNAS (Aria):
         href: https://aria.home.schndr.cloud
-        icon: truenas-scale
+        icon: truenas
         description: Backup NAS
         ping: 100.118.182.87
 - Administration:
@@ -91,6 +91,11 @@
     #     description: WLED
     #     ping: 10.10.80.80
 - Services:
+    - Crafty:
+        href: https://crafty.home.schndr.cloud
+        icon: crafty-controller
+        description: Minecraft Servers
+        ping: 10.10.10.210
     - Grafana:
         href: https://grafana.home.schndr.cloud
         icon: grafana
@@ -109,6 +114,12 @@
         description: Bookmark Manager
         server: docker
         container: linkding
+    - MeTube:
+        href: https://metube.home.schndr.cloud
+        icon: metube
+        description: Web GUI for yt-dlp
+        server: docker
+        container: metube
     - n8n:
         href: https://n8n.home.schndr.cloud
         icon: n8n
@@ -121,6 +132,12 @@
         description: Wiki and Documentation
         server: docker
         container: outline
+    - Stirling-PDF:
+        href: https://stirlingpdf.home.schndr.cloud
+        icon: stirling-pdf
+        description: PDF Editor
+        server: docker
+        container: stirling-pdf
     - Uptime Kuma:
         href: https://uptimekuma.home.schndr.cloud
         icon: uptime-kuma

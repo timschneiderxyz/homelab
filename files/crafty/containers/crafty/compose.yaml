@@ -1,0 +1,24 @@
+services:
+  crafty:
+    container_name: crafty
+    hostname: crafty.home
+    image: registry.gitlab.com/crafty-controller/crafty-4:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    ports:
+      - 8443:8443 # Panel
+      - 8123:8123 # Dynmap
+      - "19132:19132/udp" # Bedrock
+      - "25500-25600:25500-25600" # Servers
+    volumes:
+      - ./config:/crafty/app/config
+      - ./logs:/crafty/logs
+      - ./backups:/crafty/backups
+      - ./import:/crafty/import
+      - ./servers:/crafty/servers
+    environment:
+      TZ: Europe/Berlin
+networks:
+  dockernet:
+    driver: bridge

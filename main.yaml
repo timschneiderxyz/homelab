@@ -74,3 +74,23 @@
       tags: [ init, update ]
     - role: containers
       tags: [ init, update ]
+
+# Crafty
+- hosts: crafty
+  vars_files:
+    - 'vars/vault.yaml'
+  roles:
+    - role: secure-ssh
+      tags: init
+    - role: motd
+      tags: init
+    - role: packages
+      tags: [ init, update ]
+    - role: user
+      tags: [ init, update ]
+    - role: tailscale
+      tags: init
+    - role: docker
+      tags: init
+    - role: containers
+      tags: [ init, update ]

@@ -20,3 +20,6 @@ homelab:
     lilith:
       ansible_host: 10.10.10.254
       ansible_user: root
+    crafty:
+      ansible_host: 10.10.10.210
+      ansible_user: root

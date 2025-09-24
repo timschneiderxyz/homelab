@@ -1,0 +1,22 @@
+services:
+  metube:
+    container_name: metube
+    hostname: metube.home
+    image: ghcr.io/alexta69/metube:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - ./state:/app/state
+      - /mnt/downloads:/downloads
+    environment:
+      TZ: Europe/Berlin
+      STATE_DIR: /app/state
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.metube.entryPoints=websecure"
+      - "traefik.http.routers.metube.rule=Host(`metube.home.schndr.cloud`)"
+      - "traefik.http.services.metube.loadbalancer.server.port=8081"
+networks:
+  dockernet:
+    external: true

@@ -30,6 +30,11 @@ http:
         - "websecure"
       rule: "Host(`slzb.home.schndr.cloud`)"
       service: slzb
+    crafty:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`crafty.home.schndr.cloud`)"
+      service: crafty
   services:
     unifi:
       loadBalancer:
@@ -55,3 +60,7 @@ http:
       loadBalancer:
         servers:
           - url: "http://10.10.80.2"
+    crafty:
+      loadBalancer:
+        servers:
+          - url: "https://10.10.10.210:8443"
