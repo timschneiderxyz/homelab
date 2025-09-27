@@ -22,8 +22,8 @@ services:
       OIDC_CLIENT_ID: ${OIDC_CLIENT_ID}
       OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET}
       OIDC_AUTH_URI: https://authentik.home.schndr.cloud/application/o/authorize/
-      OIDC_TOKEN_URI: https://authentik.home.schndr.cloud/application/o/token/
-      OIDC_USERINFO_URI: https://authentik.home.schndr.cloud/application/o/userinfo/
+      OIDC_TOKEN_URI: http://authentik:9000/application/o/token/
+      OIDC_USERINFO_URI: http://authentik:9000/application/o/userinfo/
       OIDC_LOGOUT_URI: https://authentik.home.schndr.cloud/application/o/wiki/end-session/
       OIDC_USERNAME_CLAIM: preferred_username
       OIDC_SCOPES: openid email profile
@@ -52,12 +52,12 @@ services:
   outline-postgres:
     container_name: outline-postgres
     hostname: outline-postgres.home
-    image: postgres:latest
+    image: postgres:18
     restart: unless-stopped
     networks:
       - dockernet
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql
     environment:
       TZ: Europe/Berlin
       POSTGRES_DB: outline

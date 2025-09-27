@@ -68,8 +68,6 @@
     - zsh
     - git
     - neovim
-    - btop
-    - curl
   become: true
 
 - name: Change user shell to zsh

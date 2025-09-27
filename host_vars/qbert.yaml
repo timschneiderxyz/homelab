@@ -6,4 +6,7 @@ motd: "   ___  _               _ \n
    \\__\\_\\_.__/ \\___|_|   \\__| \n
   \n"
 
+packages:
+  - name: btop
+
 user_name: admin

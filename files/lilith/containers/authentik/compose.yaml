@@ -84,12 +84,12 @@ services:
   authentik-postgres:
     container_name: authentik-postgres
     hostname: authentik-postgres.home
-    image: postgres:latest
+    image: postgres:18
     restart: unless-stopped
     networks:
       - dockernet
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql
     environment:
       TZ: Europe/Berlin
       POSTGRES_DB: authentik
