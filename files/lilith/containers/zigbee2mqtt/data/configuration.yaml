@@ -1,4 +1,14 @@
 version: 4
+frontend:
+  enabled: true
+  package: zigbee2mqtt-windfront
+  auth_token: '!secrets.yaml auth_token'
+homeassistant:
+  enabled: true
+advanced:
+  transmit_power: 20
+  log_directory: /app/data/log
+  log_file: '%TIMESTAMP%.log'
 serial:
   port: tcp://10.10.80.2:6638
   baudrate: 115200
@@ -8,14 +18,6 @@ mqtt:
   user: '!secrets.yaml mqtt_user'
   password: '!secrets.yaml mqtt_password'
   base_topic: zigbee2mqtt
-advanced:
-  transmit_power: 20
-  log_directory: /app/data/log
-  log_file: '%TIMESTAMP%.log'
-frontend:
-  enabled: true
-homeassistant:
-  enabled: true
 devices:
   '0x00158d0009762962':
     friendly_name: Door and Window Sensor 1
