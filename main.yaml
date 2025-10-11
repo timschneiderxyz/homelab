@@ -50,8 +50,6 @@
       tags: [ init, update ]
     - role: user
       tags: [ init, update ]
-    # - role: nut
-    #   tags: init
 
 # Lilith
 - hosts: lilith

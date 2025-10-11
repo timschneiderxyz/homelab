@@ -5,6 +5,7 @@ theme: dark
 color: gray
 headerStyle: clean
 statusStyle: dot
+disableCollapse: true
 hideVersion: true
 layout:
   - Infrastructure:
@@ -15,4 +16,4 @@ layout:
       style: column
   - Services:
       style: row
-      columns: 4
+      columns: 5

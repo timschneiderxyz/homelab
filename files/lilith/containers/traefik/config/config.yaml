@@ -15,21 +15,26 @@ http:
         - "websecure"
       rule: "Host(`pbs.home.schndr.cloud`)"
       service: pbs
-    monty:
+    truenas-monty:
       entryPoints:
         - "websecure"
       rule: "Host(`monty.home.schndr.cloud`)"
-      service: monty
-    aria:
+      service: truenas-monty
+    truenas-aria:
       entryPoints:
         - "websecure"
       rule: "Host(`aria.home.schndr.cloud`)"
-      service: aria
-    slzb:
+      service: truenas-aria
+    glinet-comet:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`kvm.home.schndr.cloud`)"
+      service: glinet-comet
+    slzb-06m:
       entryPoints:
         - "websecure"
       rule: "Host(`slzb.home.schndr.cloud`)"
-      service: slzb
+      service: slzb-06m
     crafty:
       entryPoints:
         - "websecure"
@@ -48,15 +53,19 @@ http:
       loadBalancer:
         servers:
           - url: "https://10.10.10.11:8007"
-    monty:
+    truenas-monty:
       loadBalancer:
         servers:
-          - url: "http://10.10.10.20"
-    aria:
+          - url: "https://10.10.10.20"
+    truenas-aria:
       loadBalancer:
         servers:
-          - url: "http://100.118.182.87"
-    slzb:
+          - url: "https://100.118.182.87"
+    glinet-comet:
+      loadBalancer:
+        servers:
+          - url: "https://10.10.10.13"
+    slzb-06m:
       loadBalancer:
         servers:
           - url: "http://10.10.80.2"
