@@ -1,0 +1,60 @@
+services:
+  docmost:
+    container_name: docmost
+    hostname: docmost.home
+    image: docmost/docmost:latest
+    depends_on:
+      - docmost-redis
+      - docmost-postgres
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - ./data:/app/data/storage
+    environment:
+      TZ: Europe/Berlin
+      APP_URL: https://docmost.home.schndr.cloud
+      APP_SECRET: ${APP_SECRET}
+      REDIS_URL: redis://docmost-redis:6379
+      DATABASE_URL: postgres://docmost:${POSTGRES_PASSWORD}@docmost-postgres:5432/docmost?sslmode=disable
+      DISABLE_TELEMETRY: true
+      MAIL_DRIVER: smtp
+      SMTP_HOST: postfix
+      SMTP_PORT: 25
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
+      MAIL_FROM_NAME: Docmost
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.docmost.entryPoints=websecure"
+      - "traefik.http.routers.docmost.rule=Host(`docmost.home.schndr.cloud`)"
+      - "traefik.http.services.docmost.loadbalancer.server.port=3000"
+  docmost-redis:
+    container_name: docmost-redis
+    hostname: docmost-redis.home
+    image: redis:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - ./redis:/data
+    environment:
+      TZ: Europe/Berlin
+  docmost-postgres:
+    container_name: docmost-postgres
+    hostname: docmost-postgres.home
+    image: postgres:18
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - ./postgres:/var/lib/postgresql
+    environment:
+      TZ: Europe/Berlin
+      POSTGRES_DB: docmost
+      POSTGRES_USER: docmost
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+networks:
+  dockernet:
+    external: true

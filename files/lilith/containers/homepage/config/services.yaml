@@ -26,6 +26,11 @@
         icon: truenas
         description: Backup NAS
         ping: 100.118.182.87
+    - GL.iNet Comet:
+        href: https://kvm.home.schndr.cloud
+        icon: glinet
+        description: KVM
+        ping: 10.10.10.13
 - Administration:
     - Pi-Hole:
         href: https://pihole.home.schndr.cloud/admin
@@ -39,12 +44,6 @@
         description: Reverse Proxy
         server: docker
         container: traefik
-    - Authentik:
-        href: https://authentik.home.schndr.cloud
-        icon: authentik
-        description: Identity Provider
-        server: docker
-        container: authentik
     - Portainer:
         href: https://portainer.home.schndr.cloud
         icon: portainer
@@ -96,12 +95,30 @@
         icon: crafty-controller
         description: Minecraft Servers
         ping: 10.10.10.210
+    - Docmost:
+        href: https://docmost.home.schndr.cloud
+        icon: docmost
+        description: Wiki and Documentation
+        server: docker
+        container: docmost
+    - GitLab:
+        href: https://gitlab.home.schndr.cloud
+        icon: gitlab
+        description: DevOps Platform
+        server: docker
+        container: gitlab
     - Grafana:
         href: https://grafana.home.schndr.cloud
         icon: grafana
         description: Data Visualization
         server: docker
         container: grafana
+    # - Immich:
+    #     href: https://immich.home.schndr.cloud
+    #     icon: immich
+    #     description: Photo Manager
+    #     server: docker
+    #     container: immich
     - Jellyfin:
         href: https://jellyfin.home.schndr.cloud
         icon: jellyfin
@@ -126,18 +143,6 @@
         description: Workflow Automation
         server: docker
         container: n8n
-    - Outline:
-        href: https://outline.home.schndr.cloud
-        icon: outline
-        description: Wiki and Documentation
-        server: docker
-        container: outline
-    - Stirling-PDF:
-        href: https://stirlingpdf.home.schndr.cloud
-        icon: stirling-pdf
-        description: PDF Editor
-        server: docker
-        container: stirling-pdf
     - Uptime Kuma:
         href: https://uptimekuma.home.schndr.cloud
         icon: uptime-kuma
