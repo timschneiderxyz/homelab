@@ -1,0 +1,33 @@
+services:
+  gitea:
+    container_name: gitea
+    hostname: gitea.home
+    image: docker.gitea.com/gitea:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - ./data:/data
+    environment:
+      TZ: Europe/Berlin
+      GITEA__server__ROOT_URL: https://gitea.home.schndr.cloud
+      GITEA__security__SECRET_KEY: ${GITEA__security__SECRET_KEY}
+      GITEA__security__INTERNAL_TOKEN: ${GITEA__security__INTERNAL_TOKEN}
+      GITEA__security__LOGIN_REMEMBER_DAYS: 365
+      GITEA__service__DISABLE_REGISTRATION: true
+      GITEA__cron.update_checker__ENABLED: false
+      GITEA__mailer__ENABLED: true
+      GITEA__mailer__PROTOCOL: smtp
+      GITEA__mailer__SMTP_ADDR: postfix
+      GITEA__mailer__SMTP_PORT: 25
+      GITEA__mailer__USER: ${GITEA__mailer__USER}
+      GITEA__mailer__PASSWD: ${GITEA__mailer__PASSWD}
+      GITEA__mailer__FROM: ${GITEA__mailer__FROM}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gitea.entryPoints=websecure"
+      - "traefik.http.routers.gitea.rule=Host(`gitea.home.schndr.cloud`)"
+      - "traefik.http.services.gitea.loadbalancer.server.port=3000"
+networks:
+  dockernet:
+    external: true

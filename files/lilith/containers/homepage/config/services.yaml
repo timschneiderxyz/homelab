@@ -101,12 +101,12 @@
         description: Wiki and Documentation
         server: docker
         container: docmost
-    - GitLab:
-        href: https://gitlab.home.schndr.cloud
-        icon: gitlab
-        description: DevOps Platform
+    - Gitea:
+        href: https://gitea.home.schndr.cloud
+        icon: gitea
+        description: Git Platform
         server: docker
-        container: gitlab
+        container: gitea
     - Grafana:
         href: https://grafana.home.schndr.cloud
         icon: grafana

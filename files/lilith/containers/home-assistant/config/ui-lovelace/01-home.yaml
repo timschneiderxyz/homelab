@@ -234,3 +234,19 @@ sections:
         icon: mdi:power-socket-eu
         graph: line
         detail: 2
+  - type: grid
+    column_span: 1
+    cards:
+      - type: heading
+        heading: Services
+        icon: mdi:account-wrench
+      - type: button
+        entity: switch.pi_hole
+        name: Pi-Hole
+        show_icon: true
+        icon_height: 42px
+        show_state: true
+        tap_action:
+          action: toggle
+        grid_options:
+          columns: full
