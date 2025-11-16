@@ -17,3 +17,6 @@ layout:
   - Services:
       style: row
       columns: 5
+  - Tools:
+      style: row
+      columns: 5

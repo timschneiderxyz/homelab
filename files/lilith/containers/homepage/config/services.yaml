@@ -26,12 +26,12 @@
         icon: truenas
         description: Backup NAS
         ping: 100.118.182.87
+- Administration:
     - GL.iNet Comet:
         href: https://kvm.home.schndr.cloud
         icon: glinet
         description: KVM
         ping: 10.10.10.13
-- Administration:
     - Pi-Hole:
         href: https://pihole.home.schndr.cloud/admin
         icon: pi-hole
@@ -131,12 +131,6 @@
         description: Bookmark Manager
         server: docker
         container: linkding
-    - MeTube:
-        href: https://metube.home.schndr.cloud
-        icon: metube
-        description: Web GUI for yt-dlp
-        server: docker
-        container: metube
     - n8n:
         href: https://n8n.home.schndr.cloud
         icon: n8n
@@ -155,3 +149,10 @@
         description: Password Manager
         server: docker
         container: vaultwarden
+- Tools:
+    - MeTube:
+        href: https://metube.home.schndr.cloud
+        icon: metube
+        description: Web GUI for yt-dlp
+        server: docker
+        container: metube

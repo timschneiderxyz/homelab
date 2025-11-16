@@ -25,6 +25,8 @@ services:
       - "traefik.http.routers.traefik.entryPoints=websecure"
       - "traefik.http.routers.traefik.rule=Host(`traefik.home.schndr.cloud`)"
       - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.middlewares=traefik-dashboard-auth"
+      - "traefik.http.middlewares.traefik-dashboard-auth.basicauth.users=${DASHBOARD_PASSWORD}"
 networks:
   dockernet:
     external: true
