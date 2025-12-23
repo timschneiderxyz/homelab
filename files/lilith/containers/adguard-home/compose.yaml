@@ -1,0 +1,27 @@
+services:
+  adguardhome:
+    container_name: adguard-home
+    hostname: adguard-home.home
+    image: adguard/adguardhome:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    ports:
+      # - 3000:3000 # Setup
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "853:853/tcp"
+    volumes:
+      - ./config:/opt/adguardhome/conf
+      - ./data:/opt/adguardhome/work
+    environment:
+      TZ: Europe/Berlin
+    labels:
+      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.adguardhome.entryPoints=websecure"
+      - "traefik.http.routers.adguardhome.rule=Host(`adguardhome.home.schndr.cloud`)"
+      - "traefik.http.services.adguardhome.loadbalancer.server.port=80"
+networks:
+  dockernet:
+    external: true

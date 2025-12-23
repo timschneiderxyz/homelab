@@ -31,13 +31,13 @@
         href: https://kvm.home.schndr.cloud
         icon: glinet
         description: KVM
-        ping: 10.10.10.13
-    - Pi-Hole:
-        href: https://pihole.home.schndr.cloud/admin
-        icon: pi-hole
+        ping: 10.10.10.12
+    - AdGuard Home:
+        href: https://adguardhome.home.schndr.cloud
+        icon: adguard-home
         description: Ad Blocking & DNS
         server: docker
-        container: pi-hole
+        container: adguard-home
     - Traefik:
         href: https://traefik.home.schndr.cloud
         icon: traefik
@@ -53,7 +53,7 @@
     - VS Code:
         href: https://vscode.home.schndr.cloud
         icon: vscode
-        description: Code Editor
+        description: Editor
         server: docker
         container: vscode
 - Smart Home:

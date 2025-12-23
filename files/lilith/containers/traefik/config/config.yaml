@@ -64,7 +64,7 @@ http:
     glinet-comet:
       loadBalancer:
         servers:
-          - url: "https://10.10.10.13"
+          - url: "https://10.10.10.12"
     slzb-06m:
       loadBalancer:
         servers:

@@ -241,8 +241,8 @@ sections:
         heading: Services
         icon: mdi:account-wrench
       - type: button
-        entity: switch.pi_hole
-        name: Pi-Hole
+        entity: switch.adguard_home_schutz
+        name: AdGuard Home
         show_icon: true
         icon_height: 42px
         show_state: true
