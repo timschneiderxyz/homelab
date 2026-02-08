@@ -20,7 +20,7 @@ services:
       - "com.centurylinklabs.watchtower.monitor-only=true"
       - "traefik.enable=true"
       - "traefik.http.routers.adguardhome.entryPoints=websecure"
-      - "traefik.http.routers.adguardhome.rule=Host(`adguardhome.home.schndr.cloud`)"
+      - "traefik.http.routers.adguardhome.rule=Host(`adguard.home.schndr.cloud`)"
       - "traefik.http.services.adguardhome.loadbalancer.server.port=80"
 networks:
   dockernet:

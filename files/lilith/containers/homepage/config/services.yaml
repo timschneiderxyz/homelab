@@ -33,7 +33,7 @@
         description: KVM
         ping: 10.10.10.12
     - AdGuard Home:
-        href: https://adguardhome.home.schndr.cloud
+        href: https://adguard.home.schndr.cloud
         icon: adguard-home
         description: Ad Blocking & DNS
         server: docker

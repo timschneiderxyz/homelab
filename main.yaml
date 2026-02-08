@@ -9,6 +9,7 @@
 
 # Proxmox VE
 - hosts: proxmox
+  gather_facts: true
   vars_files:
     - 'vars/vault.yaml'
   roles:
@@ -23,6 +24,7 @@
 
 # Proxmox Backup Server
 - hosts: pbs
+  gather_facts: true
   vars_files:
     - 'vars/vault.yaml'
   roles:
@@ -39,6 +41,7 @@
 
 # Lilith
 - hosts: lilith
+  gather_facts: true
   vars_files:
     - 'vars/vault.yaml'
   roles:
@@ -61,6 +64,7 @@
 
 # Crafty
 - hosts: crafty
+  gather_facts: true
   vars_files:
     - 'vars/vault.yaml'
   roles:

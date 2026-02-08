@@ -1,0 +1,253 @@
+views:
+  - title: Home
+    path: home
+    icon: mdi:home
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Wohnzimmer
+            icon: mdi:sofa-single
+            badges:
+              - type: entity
+                entity: sensor.temperature_and_humidity_sensor_2_temperature
+                name: Temperatur
+                color: red
+              - type: entity
+                entity: sensor.temperature_and_humidity_sensor_2_humidity
+                name: Luftfeuchtigkeit
+                color: light-blue
+          - type: tile
+            entity: binary_sensor.door_and_window_sensor_5_contact
+            name: Fenster
+            color: teal
+            grid_options:
+              columns: full
+          - type: tile
+            entity: light.hue_color_lamp_1
+            name: Deckenlampe
+            hide_state: true
+            features:
+              - type: light-brightness
+          - type: tile
+            entity: light.hue_color_lamp_2
+            name: Stehlampe
+            hide_state: true
+            features:
+              - type: light-brightness
+          - type: button
+            entity: switch.smart_plug_5
+            name: Steckdose
+            icon: mdi:power-socket-eu
+            icon_height: 42px
+            show_state: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: full
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Esszimmer
+            icon: mdi:silverware-variant
+          - type: tile
+            entity: binary_sensor.door_and_window_sensor_3_contact
+            name: Fenster
+            color: teal
+            grid_options:
+              columns: full
+          - type: tile
+            entity: light.hue_color_lamp_3
+            name: Deckenlampe
+            hide_state: true
+            features:
+              - type: light-brightness
+            grid_options:
+              columns: full
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Büro
+            icon: mdi:chair-rolling
+          - type: tile
+            entity: binary_sensor.door_and_window_sensor_4_contact
+            name: Fenster
+            color: teal
+            grid_options:
+              columns: full
+          - type: tile
+            entity: light.hue_play_lightbar_1
+            name: Monitorlampe
+            hide_state: true
+            features:
+              - type: light-brightness
+          - type: tile
+            entity: light.hue_luster_1
+            name: Mondlicht
+            hide_state: true
+            features:
+              - type: light-brightness
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Schlafzimmer
+            icon: mdi:bed-king
+            badges:
+              - type: entity
+                entity: sensor.temperature_and_humidity_sensor_1_temperature
+                name: Temperatur
+                color: red
+              - type: entity
+                entity: sensor.temperature_and_humidity_sensor_1_humidity
+                name: Luftfeuchtigkeit
+                color: light-blue
+          - type: tile
+            entity: binary_sensor.door_and_window_sensor_1_contact
+            name: Fenster
+            color: teal
+            grid_options:
+              columns: full
+          - type: tile
+            entity: cover.shelly_2pm_gen4_schlafzimmer
+            name: Rollladen
+            features:
+              - type: cover-open-close
+            grid_options:
+              columns: full
+          - type: tile
+            entity: light.hue_color_lamp_4
+            name: Deckenlampe
+            hide_state: true
+            features:
+              - type: light-brightness
+            grid_options:
+              columns: full
+          - type: tile
+            entity: light.hue_luster_2
+            name: Stehlampe 1
+            hide_state: true
+            features:
+              - type: light-brightness
+          - type: tile
+            entity: light.hue_luster_3
+            name: Stehlampe 2
+            hide_state: true
+            features:
+              - type: light-brightness
+          - type: tile
+            entity: light.hue_luster_4
+            name: Stehlampe 3
+            hide_state: true
+            features:
+              - type: light-brightness
+          - type: tile
+            entity: light.hue_go_1
+            name: Hue Go
+            hide_state: true
+            features:
+              - type: light-brightness
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Badezimmer
+            icon: mdi:bathtub
+            badges:
+              - type: entity
+                entity: sensor.temperature_and_humidity_sensor_3_temperature
+                name: Temperatur
+                color: red
+              - type: entity
+                entity: sensor.temperature_and_humidity_sensor_3_humidity
+                name: Luftfeuchtigkeit
+                color: light-blue
+          - type: tile
+            entity: binary_sensor.door_and_window_sensor_2_contact
+            name: Fenster
+            color: teal
+            grid_options:
+              columns: full
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Außen
+            icon: mdi:weather-partly-cloudy
+          - type: sensor
+            entity: sensor.temperature_and_humidity_sensor_4_temperature
+            name: Temperatur
+            icon: mdi:thermometer
+            graph: line
+            detail: 2
+          - type: sensor
+            entity: sensor.temperature_and_humidity_sensor_4_humidity
+            name: Luftfeuchtigkeit
+            icon: mdi:water-percent
+            graph: line
+            detail: 2
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Stromverbrauch
+            icon: mdi:lightning-bolt
+          - type: sensor
+            entity: sensor.shelly_pro_3em_total_active_power
+            name: Gesamt
+            icon: mdi:lightning-bolt
+            graph: line
+            detail: 2
+            grid_options:
+              columns: full
+          - type: sensor
+            entity: sensor.smart_plug_1_power
+            name: Homelab
+            icon: mdi:power-socket-eu
+            graph: line
+            detail: 2
+          - type: sensor
+            entity: sensor.smart_plug_2_power
+            name: Schreibtisch Tim
+            icon: mdi:power-socket-eu
+            graph: line
+            detail: 2
+          - type: sensor
+            entity: sensor.smart_plug_3_power
+            name: Fernseher
+            icon: mdi:power-socket-eu
+            graph: line
+            detail: 2
+          - type: sensor
+            entity: sensor.smart_plug_4_power
+            name: Aquarium Licht
+            icon: mdi:power-socket-eu
+            graph: line
+            detail: 2
+          - type: sensor
+            entity: sensor.smart_plug_5_power
+            name: Steckdose
+            icon: mdi:power-socket-eu
+            graph: line
+            detail: 2
+      - type: grid
+        column_span: 1
+        cards:
+          - type: heading
+            heading: Services
+            icon: mdi:account-wrench
+          - type: button
+            entity: switch.adguard_home_schutz
+            name: AdGuard Home
+            show_icon: true
+            icon_height: 42px
+            show_state: true
+            tap_action:
+              action: toggle
+            grid_options:
+              columns: full
