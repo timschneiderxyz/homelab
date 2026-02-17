@@ -15,10 +15,13 @@
     force: true
 
 - name: Add Tailscale repository
-  ansible.builtin.apt_repository:
-    repo: "{{ tailscale_repo }}"
-    filename: tailscale
-    state: present
+  ansible.builtin.deb822_repository:
+    name: tailscale
+    types: deb
+    uris: https://pkgs.tailscale.com/stable/debian/
+    suites: "{{ ansible_facts['distribution_release'] }}"
+    components: main
+    signed_by: "{{ tailscale_gpg_key_dest }}"
 
 - name: Install Tailscale
   ansible.builtin.apt:

@@ -15,10 +15,13 @@
     force: true
 
 - name: Add Docker repository
-  ansible.builtin.apt_repository:
-    repo: "{{ docker_repo }}"
-    filename: docker
-    state: present
+  ansible.builtin.deb822_repository:
+    name: docker
+    types: deb
+    uris: https://download.docker.com/linux/debian/
+    suites: "{{ ansible_facts['distribution_release'] }}"
+    components: stable
+    signed_by: "{{ docker_gpg_key_dest }}"
 
 - name: Install Docker
   ansible.builtin.apt:
