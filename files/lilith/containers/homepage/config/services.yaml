@@ -84,11 +84,6 @@
         icon: shelly
         description: Relais
         ping: 10.10.80.20
-    # - LED-Matrix:
-    #     href: http://10.10.80.80
-    #     icon: wled
-    #     description: WLED
-    #     ping: 10.10.80.80
 - Services:
     - Crafty:
         href: https://crafty.home.schndr.cloud
@@ -113,22 +108,22 @@
         description: Data Visualization
         server: docker
         container: grafana
-    # - Immich:
-    #     href: https://immich.home.schndr.cloud
-    #     icon: immich
-    #     description: Photo Manager
-    #     server: docker
-    #     container: immich
+    - Immich:
+        href: https://immich.home.schndr.cloud
+        icon: immich
+        description: Photos
+        server: docker
+        container: immich
     - Jellyfin:
         href: https://jellyfin.home.schndr.cloud
         icon: jellyfin
-        description: Media Streaming
+        description: Streaming
         server: docker
         container: jellyfin
     - Linkding:
         href: https://linkding.home.schndr.cloud
         icon: linkding
-        description: Bookmark Manager
+        description: Bookmarks
         server: docker
         container: linkding
     - n8n:

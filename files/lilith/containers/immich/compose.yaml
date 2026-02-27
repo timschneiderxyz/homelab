@@ -2,17 +2,66 @@ services:
   immich:
     container_name: immich
     hostname: immich.home
-    image: ghcr.io/immich-app/immich-server:latest
+    image: ghcr.io/immich-app/immich-server:release
+    depends_on:
+      - immich-valkey
+      - immich-postgres
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - /mnt/images/immich:/data
+      - /mnt/images/library:/mnt/library:ro
+    environment:
+      TZ: Europe/Berlin
+      REDIS_HOSTNAME: immich-valkey
+      DB_URL: postgres://immich:${POSTGRES_PASSWORD}@immich-postgres:5432/immich?sslmode=disable
+    labels:
+      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.immich.entryPoints=websecure"
+      - "traefik.http.routers.immich.rule=Host(`immich.home.schndr.cloud`)"
+      - "traefik.http.services.immich.loadbalancer.server.port=2283"
+  immich-machine-learning:
+    container_name: immich-machine-learning
+    hostname: immich-machine-learning.home
+    image: ghcr.io/immich-app/immich-machine-learning:release
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - ./cache:/cache
+    environment:
+      TZ: Europe/Berlin
+    labels:
+      - "com.centurylinklabs.watchtower.monitor-only=true"
+  immich-valkey:
+    container_name: immich-valkey
+    hostname: immich-valkey.home
+    image: valkey/valkey:9
     restart: unless-stopped
     networks:
       - dockernet
     environment:
       TZ: Europe/Berlin
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.immich.entryPoints=websecure"
-      - "traefik.http.routers.immich.rule=Host(`immich.home.schndr.cloud`)"
-      - "traefik.http.services.immich.loadbalancer.server.port="
+      - "com.centurylinklabs.watchtower.monitor-only=true"
+  immich-postgres:
+    container_name: immich-postgres
+    hostname: immich-postgres.home
+    image: ghcr.io/immich-app/postgres:18-vectorchord0.5.3-pgvector0.8.1
+    restart: unless-stopped
+    networks:
+      - dockernet
+    volumes:
+      - ./postgres:/var/lib/postgresql
+    environment:
+      TZ: Europe/Berlin
+      POSTGRES_DB: immich
+      POSTGRES_USER: immich
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    labels:
+      - "com.centurylinklabs.watchtower.monitor-only=true"
 networks:
   dockernet:
     external: true
