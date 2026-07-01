@@ -1,0 +1,18 @@
+services:
+  ittools:
+    container_name: it-tools
+    hostname: it-tools.home
+    image: ghcr.io/corentinth/it-tools:latest
+    restart: unless-stopped
+    networks:
+      - dockernet
+    environment:
+      TZ: Europe/Berlin
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ittools.entryPoints=websecure"
+      - "traefik.http.routers.ittools.rule=Host(`ittools.home.schndr.cloud`)"
+      - "traefik.http.services.ittools.loadbalancer.server.port=80"
+networks:
+  dockernet:
+    external: true

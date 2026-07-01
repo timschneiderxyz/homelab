@@ -13,13 +13,13 @@ views:
             icon: mdi:sofa-single
             badges:
               - type: entity
-                entity: sensor.temperature_and_humidity_sensor_2_temperature
-                name: Temperatur
-                color: red
-              - type: entity
                 entity: sensor.temperature_and_humidity_sensor_2_humidity
                 name: Luftfeuchtigkeit
                 color: light-blue
+              - type: entity
+                entity: sensor.temperature_and_humidity_sensor_2_temperature
+                name: Temperatur
+                color: red
           - type: tile
             entity: binary_sensor.door_and_window_sensor_5_contact
             name: Fenster
@@ -100,13 +100,13 @@ views:
             icon: mdi:bed-king
             badges:
               - type: entity
-                entity: sensor.temperature_and_humidity_sensor_1_temperature
-                name: Temperatur
-                color: red
-              - type: entity
                 entity: sensor.temperature_and_humidity_sensor_1_humidity
                 name: Luftfeuchtigkeit
                 color: light-blue
+              - type: entity
+                entity: sensor.temperature_and_humidity_sensor_1_temperature
+                name: Temperatur
+                color: red
           - type: tile
             entity: binary_sensor.door_and_window_sensor_1_contact
             name: Fenster
@@ -160,13 +160,13 @@ views:
             icon: mdi:bathtub
             badges:
               - type: entity
-                entity: sensor.temperature_and_humidity_sensor_3_temperature
-                name: Temperatur
-                color: red
-              - type: entity
                 entity: sensor.temperature_and_humidity_sensor_3_humidity
                 name: Luftfeuchtigkeit
                 color: light-blue
+              - type: entity
+                entity: sensor.temperature_and_humidity_sensor_3_temperature
+                name: Temperatur
+                color: red
           - type: tile
             entity: binary_sensor.door_and_window_sensor_2_contact
             name: Fenster
@@ -177,18 +177,18 @@ views:
         column_span: 1
         cards:
           - type: heading
-            heading: Außen
+            heading: Garten
             icon: mdi:weather-partly-cloudy
-          - type: sensor
-            entity: sensor.temperature_and_humidity_sensor_4_temperature
-            name: Temperatur
-            icon: mdi:thermometer
-            graph: line
-            detail: 2
           - type: sensor
             entity: sensor.temperature_and_humidity_sensor_4_humidity
             name: Luftfeuchtigkeit
             icon: mdi:water-percent
+            graph: line
+            detail: 2
+          - type: sensor
+            entity: sensor.temperature_and_humidity_sensor_4_temperature
+            name: Temperatur
+            icon: mdi:thermometer
             graph: line
             detail: 2
       - type: grid

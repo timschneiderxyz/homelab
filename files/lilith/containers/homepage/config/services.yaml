@@ -90,12 +90,6 @@
         icon: crafty-controller
         description: Minecraft Servers
         ping: 10.10.10.210
-    - Docmost:
-        href: https://docmost.home.schndr.cloud
-        icon: docmost
-        description: Wiki and Documentation
-        server: docker
-        container: docmost
     - Gitea:
         href: https://gitea.home.schndr.cloud
         icon: gitea
@@ -145,6 +139,12 @@
         server: docker
         container: vaultwarden
 - Tools:
+    - IT Tools:
+        href: https://ittools.home.schndr.cloud
+        icon: it-tools
+        description: Collection of Tools
+        server: docker
+        container: it-tools
     - MeTube:
         href: https://metube.home.schndr.cloud
         icon: metube

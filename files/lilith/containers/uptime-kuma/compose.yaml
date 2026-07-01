@@ -2,7 +2,7 @@ services:
   uptimekuma:
     container_name: uptime-kuma
     hostname: uptime-kuma.home
-    image: louislam/uptime-kuma:latest
+    image: louislam/uptime-kuma:2
     restart: unless-stopped
     networks:
       - dockernet
