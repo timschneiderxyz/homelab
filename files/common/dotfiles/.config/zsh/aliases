@@ -19,7 +19,7 @@ alias \
 
 # Apps
 alias \
-  nv="nvim" \
+  v="nvim" \
   g="git" \
   d="docker"
 

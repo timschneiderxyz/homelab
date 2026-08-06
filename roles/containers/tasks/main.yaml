@@ -10,12 +10,14 @@
 - name: Check if Docker is installed
   ansible.builtin.command: which docker
   register: docker_installed
-  changed_when: "'not found' in docker_installed.stdout"
+  failed_when: false
+  changed_when: false
+  check_mode: false
 
 - name: Docker is not installed message
   ansible.builtin.debug:
     msg: Docker is not installed. Please install it.
-  when: docker_installed.changed
+  when: docker_installed.rc != 0
 
 - name: Ensure required directories for containers exist
   ansible.builtin.file:
@@ -23,6 +25,7 @@
     state: directory
     owner: root
     group: root
+    mode: '0755'
   loop: "{{ containers }}"
 
 - name: Copy "compose.yaml" files
@@ -31,6 +34,7 @@
     dest: "{{ containers_path }}/{{ item.name }}/compose.yaml"
     owner: root
     group: root
+    mode: '0644'
   loop: "{{ containers }}"
   register: copy_containers
 
@@ -41,9 +45,13 @@
       {% for env_var in item.env_vars %}
       {{ env_var }}
       {% endfor %}
+    owner: root
+    group: root
+    mode: '0600'
   loop: "{{ containers }}"
   when: item.env_vars is defined and item.env_vars | length > 0
   register: copy_containers_env
+  no_log: true
 
 - name: Start containers
   ansible.builtin.shell:
@@ -56,5 +64,5 @@
     index_var: index
   when:
     - containers_up
-    - not docker_installed.changed
+    - docker_installed.rc == 0
     - copy_containers.results[index].changed or copy_containers_env.results[index].changed
