@@ -1,63 +1,55 @@
 - id: styrbar_1
   alias: Styrbar 1
   description: Automation for the IKEA Styrbar remote control.
-  mode: single
+  mode: queued
   triggers:
     # Trigger - On
-    - trigger: device
-      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
-      domain: mqtt
-      type: action
-      subtype: 'on'
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Styrbar 1"
+      value_template: "{{ value_json.action }}"
+      payload: 'on'
       id: styrbar_1_on
     # Trigger - Brightness move up
-    - trigger: device
-      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
-      domain: mqtt
-      type: action
-      subtype: brightness_move_up
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Styrbar 1"
+      value_template: "{{ value_json.action }}"
+      payload: brightness_move_up
       id: styrbar_1_brightness_move_up
     # Trigger - Off
-    - trigger: device
-      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
-      domain: mqtt
-      type: action
-      subtype: 'off'
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Styrbar 1"
+      value_template: "{{ value_json.action }}"
+      payload: 'off'
       id: styrbar_1_off
     # Trigger - Brightness move down
-    - trigger: device
-      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
-      domain: mqtt
-      type: action
-      subtype: brightness_move_down
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Styrbar 1"
+      value_template: "{{ value_json.action }}"
+      payload: brightness_move_down
       id: styrbar_1_brightness_move_down
     # Trigger - Arrow left click
-    - trigger: device
-      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
-      domain: mqtt
-      type: action
-      subtype: arrow_left_click
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Styrbar 1"
+      value_template: "{{ value_json.action }}"
+      payload: arrow_left_click
       id: styrbar_1_arrow_left_click
     # Trigger - Arrow left hold
-    - trigger: device
-      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
-      domain: mqtt
-      type: action
-      subtype: arrow_left_hold
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Styrbar 1"
+      value_template: "{{ value_json.action }}"
+      payload: arrow_left_hold
       id: styrbar_1_arrow_left_hold
     # Trigger - Arrow right click
-    - trigger: device
-      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
-      domain: mqtt
-      type: action
-      subtype: arrow_right_click
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Styrbar 1"
+      value_template: "{{ value_json.action }}"
+      payload: arrow_right_click
       id: styrbar_1_arrow_right_click
     # Trigger - Arrow right hold
-    - trigger: device
-      device_id: f4eb5bb5c6fcb2a4af35e1794b9486b8
-      domain: mqtt
-      type: action
-      subtype: arrow_right_hold
+    - trigger: mqtt
+      topic: "zigbee2mqtt/Styrbar 1"
+      value_template: "{{ value_json.action }}"
+      payload: arrow_right_hold
       id: styrbar_1_arrow_right_hold
   conditions: []
   actions:
@@ -67,60 +59,53 @@
             - condition: trigger
               id: styrbar_1_on
           sequence:
-            - action: >
-                {% if is_state('light.hue_color_lamp_4', 'on') %}
-                  light.turn_off
-                {% else %}
-                  script.light_bright
-                {% endif %}
-              target:
+            - action: script.light_toggle
+              data:
                 entity_id: light.hue_color_lamp_4
+                profile: bright
         # Action - Brightness move up
         - conditions:
             - condition: trigger
               id: styrbar_1_brightness_move_up
           sequence:
-            - action: script.light_night
+            - action: light.turn_on
               target:
                 entity_id: light.hue_color_lamp_4
+              data:
+                profile: night
         # Action - Off
         - conditions:
             - condition: trigger
               id: styrbar_1_off
           sequence:
-            - action: >
-                {% if is_state('light.hue_luster_2', 'on')
-                   or is_state('light.hue_luster_3', 'on')
-                   or is_state('light.hue_luster_4', 'on')
-                   or is_state('light.hue_go_1', 'on') %}
-                  light.turn_off
-                {% else %}
-                  script.light_bright
-                {% endif %}
-              target:
+            - action: script.light_toggle
+              data:
                 entity_id:
                   - light.hue_luster_2
                   - light.hue_luster_3
                   - light.hue_luster_4
                   - light.hue_go_1
+                profile: bright
         # Action - Brightness move down
         - conditions:
             - condition: trigger
               id: styrbar_1_brightness_move_down
           sequence:
-            - action: script.light_night
+            - action: light.turn_on
               target:
                 entity_id:
                   - light.hue_luster_2
                   - light.hue_luster_3
                   - light.hue_luster_4
                   - light.hue_go_1
+              data:
+                profile: night
         # Action - Arrow left click
         - conditions:
             - condition: trigger
               id: styrbar_1_arrow_left_click
           sequence:
-            - action: >
+            - action: >-
                 {% if is_state('cover.shelly_2pm_gen4_schlafzimmer', 'opening')
                    or is_state('cover.shelly_2pm_gen4_schlafzimmer', 'closing') %}
                   cover.stop_cover
@@ -139,7 +124,7 @@
             - condition: trigger
               id: styrbar_1_arrow_right_click
           sequence:
-            - action: >
+            - action: >-
                 {% if is_state('cover.shelly_2pm_gen4_schlafzimmer', 'opening')
                    or is_state('cover.shelly_2pm_gen4_schlafzimmer', 'closing') %}
                   cover.stop_cover

@@ -1,31 +1,38 @@
-# Light - Bright
-light_bright:
-  alias: Light Bright
-  description: Set the light to a bright white color.
-  mode: single
+# Light - Toggle
+light_toggle:
+  alias: Light Toggle
+  description: >-
+    Turn all lights on, keeping their last brightness and color. A profile or
+    explicit values override them. If any of the lights is already on, all of
+    them are turned off instead.
+  mode: parallel
   fields:
     entity_id:
       required: true
+    profile: {}
+    brightness: {}
+    xy_color: {}
+  variables:
+    any_light_on: >-
+      {{ expand(entity_id) | selectattr('state', 'eq', 'on') | list | count > 0 }}
+    settings: >-
+      {% set values = {} %}
+      {%- if profile is defined %}{% set values = dict(values, profile=profile) %}{% endif %}
+      {%- if brightness is defined %}{% set values = dict(values, brightness=brightness) %}{% endif %}
+      {%- if xy_color is defined %}{% set values = dict(values, xy_color=xy_color) %}{% endif %}
+      {{- values }}
   sequence:
-    - action: light.turn_on
-      target:
-        entity_id: "{{ entity_id }}"
-      data:
-        brightness: 255
-        xy_color: [0.505, 0.385]
-
-# Light - Night
-light_night:
-  alias: Light Night
-  description: Set the light to a dim warm color.
-  mode: single
-  fields:
-    entity_id:
-      required: true
-  sequence:
-    - action: light.turn_on
-      target:
-        entity_id: "{{ entity_id }}"
-      data:
-        brightness: 30
-        xy_color: [0.561, 0.4042]
+    - if:
+        - condition: template
+          value_template: "{{ not any_light_on }}"
+      then:
+        # All off - turn on with the previous state, a profile or explicit values.
+        - action: light.turn_on
+          target:
+            entity_id: "{{ entity_id }}"
+          data: "{{ settings }}"
+      else:
+        # Any light on - turn them all off.
+        - action: light.turn_off
+          target:
+            entity_id: "{{ entity_id }}"
