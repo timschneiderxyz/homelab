@@ -25,7 +25,7 @@ alias \
 
 # Utilities
 if [[ $UID -eq 0 ]]; then
-  alias update="apt update; apt upgrade -y; apt autoremove -y; apt autoclean -y; zinit update --all"
+  alias update="apt update; apt upgrade -y; apt autoremove -y; apt autoclean -y; zinit update --all; zinit cclear"
 else
-  alias update="sudo apt update; sudo apt upgrade -y; sudo apt autoremove -y; sudo apt autoclean -y; zinit update --all"
+  alias update="sudo apt update; sudo apt upgrade -y; sudo apt autoremove -y; sudo apt autoclean -y; zinit update --all; zinit cclear"
 fi

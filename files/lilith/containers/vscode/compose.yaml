@@ -2,7 +2,7 @@ services:
   vscode:
     container_name: vscode
     hostname: vscode.home
-    image: lscr.io/linuxserver/code-server:latest
+    image: linuxserver/code-server:latest
     restart: unless-stopped
     networks:
       - dockernet
