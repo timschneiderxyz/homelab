@@ -7,8 +7,22 @@
 # Tasks
 
 
-- name: Set the message of the day
+- name: Clear the static message of the day
   ansible.builtin.copy:
-    content: "{{ motd }}"
+    content: ""
     dest: /etc/motd
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: Copy the motd scripts
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/etc/update-motd.d/{{ item | basename | splitext | first }}"
+    owner: root
+    group: root
+    mode: '0755'
+  with_fileglob:
+    - "{{ inventory_hostname }}/motd/*"
   become: true
