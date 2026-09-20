@@ -8,19 +8,7 @@
 # Handlers
 
 
-- name: Check if system is Proxmox VE or Proxmox Backup Server
-  ansible.builtin.shell: |
-    if [ -d /etc/pve ]; then
-      echo "Proxmox VE"
-    elif [ -d /etc/proxmox-backup ]; then
-      echo "Proxmox Backup Server"
-    else
-      echo "Unknown"
-    fi
-  register: proxmox_system
-
-- name: Restart pveproxy or proxmox-backup-proxy service
+- name: Restart the Proxmox proxy service
   ansible.builtin.service:
-    name: "{{ 'pveproxy' if proxmox_system.stdout == 'Proxmox VE' else 'proxmox-backup-proxy' }}"
+    name: "{{ 'pveproxy' if proxmox_ve.stat.exists else 'proxmox-backup-proxy' }}"
     state: restarted
-  when: proxmox_system.stdout != "Unknown"

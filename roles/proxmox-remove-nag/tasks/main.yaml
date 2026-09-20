@@ -8,12 +8,15 @@
 # Tasks
 
 
+- name: Check if the system is Proxmox VE
+  ansible.builtin.stat:
+    path: /etc/pve
+  register: proxmox_ve
+
 - name: Remove Proxmox subscription nag message
   ansible.builtin.lineinfile:
     path: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
-    regexp: '^(\s*)res\.data\.status\.toLowerCase\(\) !== ''active'''
-    line: '\1res.data.status.toLowerCase() === ''active'''
+    regexp: '^(\s*checked_command: function ?\(orig_cmd\) \{)\s*$'
+    line: '\1 orig_cmd(); return; //nonag'
     backrefs: true
-  notify:
-    - Check if system is Proxmox VE or Proxmox Backup Server
-    - Restart pveproxy or proxmox-backup-proxy service
+  notify: Restart the Proxmox proxy service
