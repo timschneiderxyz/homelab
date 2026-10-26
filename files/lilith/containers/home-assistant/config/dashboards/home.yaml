@@ -20,12 +20,11 @@ views:
                 entity: sensor.temperature_and_humidity_sensor_2_temperature
                 name: Temperatur
                 color: red
-          - type: tile
-            entity: binary_sensor.door_and_window_sensor_5_contact
-            name: Fenster
-            color: teal
-            grid_options:
-              columns: full
+              - type: entity
+                entity: binary_sensor.door_and_window_sensor_5_contact
+                name: Fenster
+                color: teal
+                show_state: false
           - type: tile
             entity: light.hue_color_lamp_1
             name: Deckenlampe
@@ -38,14 +37,12 @@ views:
             hide_state: true
             features:
               - type: light-brightness
-          - type: button
+          - type: tile
             entity: switch.smart_plug_5
             name: Steckdose
             icon: mdi:power-socket-eu
-            icon_height: 42px
-            show_state: true
-            tap_action:
-              action: toggle
+            features:
+              - type: toggle
             grid_options:
               columns: full
       - type: grid
@@ -54,12 +51,12 @@ views:
           - type: heading
             heading: Esszimmer
             icon: mdi:silverware-variant
-          - type: tile
-            entity: binary_sensor.door_and_window_sensor_3_contact
-            name: Fenster
-            color: teal
-            grid_options:
-              columns: full
+            badges:
+              - type: entity
+                entity: binary_sensor.door_and_window_sensor_3_contact
+                name: Fenster
+                color: teal
+                show_state: false
           - type: tile
             entity: light.hue_color_lamp_3
             name: Deckenlampe
@@ -74,12 +71,12 @@ views:
           - type: heading
             heading: Büro
             icon: mdi:chair-rolling
-          - type: tile
-            entity: binary_sensor.door_and_window_sensor_4_contact
-            name: Fenster
-            color: teal
-            grid_options:
-              columns: full
+            badges:
+              - type: entity
+                entity: binary_sensor.door_and_window_sensor_4_contact
+                name: Fenster
+                color: teal
+                show_state: false
           - type: tile
             entity: light.hue_play_lightbar_1
             name: Monitorlampe
@@ -107,12 +104,11 @@ views:
                 entity: sensor.temperature_and_humidity_sensor_1_temperature
                 name: Temperatur
                 color: red
-          - type: tile
-            entity: binary_sensor.door_and_window_sensor_1_contact
-            name: Fenster
-            color: teal
-            grid_options:
-              columns: full
+              - type: entity
+                entity: binary_sensor.door_and_window_sensor_1_contact
+                name: Fenster
+                color: teal
+                show_state: false
           - type: tile
             entity: cover.shelly_2pm_gen4_schlafzimmer
             name: Rollladen
@@ -167,12 +163,11 @@ views:
                 entity: sensor.temperature_and_humidity_sensor_3_temperature
                 name: Temperatur
                 color: red
-          - type: tile
-            entity: binary_sensor.door_and_window_sensor_2_contact
-            name: Fenster
-            color: teal
-            grid_options:
-              columns: full
+              - type: entity
+                entity: binary_sensor.door_and_window_sensor_2_contact
+                name: Fenster
+                color: teal
+                show_state: false
       - type: grid
         column_span: 1
         cards:
@@ -205,49 +200,44 @@ views:
             detail: 2
             grid_options:
               columns: full
-          - type: sensor
+          - type: tile
             entity: sensor.smart_plug_1_power
             name: Homelab
-            icon: mdi:power-socket-eu
-            graph: line
-            detail: 2
-          - type: sensor
+            icon: mdi:server
+          - type: tile
             entity: sensor.smart_plug_2_power
             name: Schreibtisch Tim
-            icon: mdi:power-socket-eu
-            graph: line
-            detail: 2
-          - type: sensor
+            icon: mdi:desk
+          - type: tile
             entity: sensor.smart_plug_3_power
             name: Fernseher
-            icon: mdi:power-socket-eu
-            graph: line
-            detail: 2
-          - type: sensor
+            icon: mdi:television
+          - type: tile
             entity: sensor.smart_plug_4_power
             name: Aquarium Licht
-            icon: mdi:power-socket-eu
-            graph: line
-            detail: 2
-          - type: sensor
+            icon: mdi:fishbowl
+          - type: tile
             entity: sensor.smart_plug_5_power
             name: Steckdose
             icon: mdi:power-socket-eu
-            graph: line
-            detail: 2
       - type: grid
         column_span: 1
         cards:
           - type: heading
-            heading: Services
-            icon: mdi:account-wrench
-          - type: button
+            heading: Sonstiges
+            icon: mdi:dots-horizontal-circle
+          - type: tile
             entity: switch.adguard_home_schutz
             name: AdGuard Home
-            show_icon: true
-            icon_height: 42px
-            show_state: true
-            tap_action:
-              action: toggle
+            features:
+              - type: toggle
+            grid_options:
+              columns: full
+          - type: tile
+            entity: switch.smart_plug_4
+            name: Aquarium Licht
+            icon: mdi:fishbowl
+            features:
+              - type: toggle
             grid_options:
               columns: full
