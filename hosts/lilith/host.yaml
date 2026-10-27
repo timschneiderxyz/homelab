@@ -1,0 +1,39 @@
+ssh:
+  user: root
+  host: 10.10.10.254
+
+modules:
+  - motd
+  - ssh-hardening
+  - packages
+  - tailscale
+  - docker
+  - nfs-shares
+  - dotfiles
+  - containers
+
+packages:
+  - qemu-guest-agent
+  - firmware-misc-nonfree
+  - intel-gpu-tools
+  - btop
+  - curl
+  - unzip
+  - zsh
+  - git
+  - neovim
+
+nfs_shares:
+  - source: "10.10.10.20:/mnt/SSD/Ablage/Downloads"
+    mountpoint: /mnt/downloads
+  - source: "10.10.10.20:/mnt/Vault/Bilder/Bibliothek"
+    mountpoint: /mnt/images/library
+    options: ro
+  - source: "10.10.10.20:/mnt/Vault/Bilder/Immich"
+    mountpoint: /mnt/images/immich
+  - source: "10.10.10.20:/mnt/Vault/Filme"
+    mountpoint: /mnt/movies
+    options: ro
+  - source: "10.10.10.20:/mnt/Vault/Serien"
+    mountpoint: /mnt/series
+    options: ro

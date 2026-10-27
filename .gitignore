@@ -5,10 +5,5 @@
 !.vscode/launch.json
 !.vscode/tasks.json
 
-# Secrets
-.vault-password
-secrets.yaml
-*.passwd
-
 # Misc
 .DS_Store

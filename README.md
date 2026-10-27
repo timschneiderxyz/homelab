@@ -1,8 +1,8 @@
 <h1 align="center">Homelab</h1>
 
 <p align="center">
-  Documentation, configuration and administration of my Homelab.<br>
-  Powered by Ansible. Always a work in progress.
+  Setup and configuration of my homelab.<br>
+  Always a work in progress.
 </p>
 
 <p align="center">
@@ -11,13 +11,37 @@
   </a>
 </p>
 
-## Setup
+## Structure
 
-This project uses Ansible Vault to store sensitive data in `vars/vault.yaml`. To prevent accidentally committing unencrypted secrets, a git pre-commit hook is available.
-
-To install the hook, which checks if `vars/vault.yaml` is encrypted before each commit, run the following commands:
-
-```bash
-chmod u+x ./git-vault-hook.sh
-./git-vault-hook.sh
 ```
+hosts/<host>/
+├── host.yaml            # host configuration
+├── secrets.sops.yaml    # secrets, encrypted with sops
+├── motd/                # motd scripts
+└── containers/<name>/   # compose.yaml and config files
+shared/                  # content used by several hosts
+tasks/                   # mise tasks
+lib/                     # helpers sourced by the tasks
+.sops.yaml               # which age key encrypts *.sops.yaml
+git-sops-hook.sh         # installs the pre-commit hook
+mise.toml                # mise configuration
+```
+
+## Requirements
+
+- `age`, `sops` and `yq` need to be installed.
+- A valid age key needs to be in `~/.config/sops/age/keys.txt`.
+- The repository needs to be trusted by mise: `mise trust`
+
+## Tasks
+
+| Command                         | Does                                              |
+| ------------------------------- | ------------------------------------------------- |
+| `mise run setup <host> [-n]`    | Runs the host's `modules`                         |
+| `mise run <module> <host> [-n]` | Runs a single module, e.g. `motd` or `containers` |
+
+`mise tasks` lists all modules. `-n` is a dry run: it shows what would change, but writes and restarts nothing.
+
+## Secrets
+
+Secrets are edited with `sops edit hosts/<host>/secrets.sops.yaml`. Values must be strings, so quote anything YAML would read as a number or boolean, e.g. `"0123"` or `"true"`.

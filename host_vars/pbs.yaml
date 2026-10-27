@@ -1,5 +1,0 @@
----
-packages:
-  - name: qemu-guest-agent
-
-nfs_shares: "{{ pbs_nfs_shares }}"

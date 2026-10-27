@@ -1,0 +1,17 @@
+ssh:
+  user: root
+  host: 10.10.10.11
+
+modules:
+  - motd
+  - ssh-hardening
+  - packages
+  - nfs-shares
+  - proxmox-nonag
+
+packages:
+  - qemu-guest-agent
+
+nfs_shares:
+  - source: "10.10.10.20:/mnt/Vault/Backups/Proxmox/pbs"
+    mountpoint: /mnt/nas-monty

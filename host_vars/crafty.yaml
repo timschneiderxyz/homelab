@@ -1,9 +1,0 @@
----
-packages:
-  - name: qemu-guest-agent
-  - name: btop
-  - name: curl
-  - name: unzip
-
-containers:
-  - name: crafty

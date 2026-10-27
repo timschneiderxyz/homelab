@@ -1,2 +1,2 @@
-[tools]
-ansible = "14"
+[task_config]
+includes = ["tasks"]

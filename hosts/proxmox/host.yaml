@@ -1,0 +1,8 @@
+ssh:
+  user: root
+  host: 10.10.10.10
+
+modules:
+  - motd
+  - ssh-hardening
+  - proxmox-nonag

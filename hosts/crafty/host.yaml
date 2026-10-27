@@ -1,0 +1,21 @@
+ssh:
+  user: root
+  host: 10.10.10.210
+
+modules:
+  - motd
+  - ssh-hardening
+  - packages
+  - tailscale
+  - docker
+  - dotfiles
+  - containers
+
+packages:
+  - qemu-guest-agent
+  - btop
+  - curl
+  - unzip
+  - zsh
+  - git
+  - neovim
