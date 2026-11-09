@@ -14,9 +14,6 @@ layout:
       style: column
   - Smart Home:
       style: column
-  - Services:
-      style: row
-      columns: 5
-  - Tools:
+  - Apps:
       style: row
       columns: 5

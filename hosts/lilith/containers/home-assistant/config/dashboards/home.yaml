@@ -37,14 +37,6 @@ views:
             hide_state: true
             features:
               - type: light-brightness
-          - type: tile
-            entity: switch.smart_plug_5
-            name: Steckdose
-            icon: mdi:power-socket-eu
-            features:
-              - type: toggle
-            grid_options:
-              columns: full
       - type: grid
         column_span: 1
         cards:
@@ -227,8 +219,9 @@ views:
             heading: Sonstiges
             icon: mdi:dots-horizontal-circle
           - type: tile
-            entity: switch.adguard_home_schutz
-            name: AdGuard Home
+            entity: switch.smart_plug_5
+            name: Steckdose
+            icon: mdi:power-socket-eu
             features:
               - type: toggle
             grid_options:
@@ -237,6 +230,13 @@ views:
             entity: switch.smart_plug_4
             name: Aquarium Licht
             icon: mdi:fishbowl
+            features:
+              - type: toggle
+            grid_options:
+              columns: full
+          - type: tile
+            entity: switch.adguard_home_schutz
+            name: AdGuard Home
             features:
               - type: toggle
             grid_options:

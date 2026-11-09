@@ -84,7 +84,7 @@
         icon: shelly
         description: Relais
         ping: 10.10.80.20
-- Services:
+- Apps:
     - Crafty:
         href: https://crafty.home.schndr.cloud
         icon: crafty-controller
@@ -120,12 +120,12 @@
         description: Bookmarks
         server: docker
         container: linkding
-    - n8n:
-        href: https://n8n.home.schndr.cloud
-        icon: n8n
-        description: Workflow Automation
+    - MeTube:
+        href: https://metube.home.schndr.cloud
+        icon: metube
+        description: Web GUI for yt-dlp
         server: docker
-        container: n8n
+        container: metube
     - Uptime Kuma:
         href: https://uptimekuma.home.schndr.cloud
         icon: uptime-kuma
@@ -138,16 +138,3 @@
         description: Password Manager
         server: docker
         container: vaultwarden
-- Tools:
-    - IT Tools:
-        href: https://ittools.home.schndr.cloud
-        icon: it-tools
-        description: Collection of Tools
-        server: docker
-        container: it-tools
-    - MeTube:
-        href: https://metube.home.schndr.cloud
-        icon: metube
-        description: Web GUI for yt-dlp
-        server: docker
-        container: metube
