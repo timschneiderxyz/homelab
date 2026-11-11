@@ -61,6 +61,7 @@ for name in $names; do
     echo "→ containers/$name: would restart (${changed:t})"
   else
     echo "→ containers/$name: restarting (${changed:t})"
-    remote "cd '$dest' && docker compose pull --quiet && docker compose up -d --remove-orphans"
+    remote "cd '$dest' && docker compose --progress quiet up -d --remove-orphans" ||
+      { echo "! containers/$name: start failed, the files are already written. Retry: ssh $target \"cd '$dest' && docker compose up -d\"" >&2; exit 1 }
   fi
 done

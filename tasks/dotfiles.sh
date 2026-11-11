@@ -8,7 +8,10 @@ zparseopts -D -E -F -- n=dry -dry-run=dry
 
 source lib/host.sh "$1"
 
-remote 'command -v zsh > /dev/null' || { echo "zsh is not installed on $1" >&2; exit 1 }
+if ! remote 'command -v zsh > /dev/null'; then
+  (( $#dry )) || { echo "zsh is not installed on $1" >&2; exit 1 }
+  echo "! zsh is not installed on $1" >&2
+fi
 
 files=(${(f)"$(git ls-files shared/dotfiles)"})
 (( $#files )) || { echo "No tracked files in shared/dotfiles" >&2; exit 1 }
