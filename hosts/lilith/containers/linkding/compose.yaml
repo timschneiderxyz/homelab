@@ -14,7 +14,6 @@ services:
       LD_SUPERUSER_PASSWORD: ${LD_SUPERUSER_PASSWORD}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.linkding.entryPoints=websecure"
       - "traefik.http.routers.linkding.rule=Host(`linkding.home.schndr.cloud`)"
       - "traefik.http.services.linkding.loadbalancer.server.port=9090"
 networks:

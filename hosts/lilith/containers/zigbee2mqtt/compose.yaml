@@ -13,7 +13,6 @@ services:
     labels:
       - "com.getarcaneapp.arcane.updater=false"
       - "traefik.enable=true"
-      - "traefik.http.routers.zigbee2mqtt.entryPoints=websecure"
       - "traefik.http.routers.zigbee2mqtt.rule=Host(`zigbee2mqtt.home.schndr.cloud`)"
       - "traefik.http.services.zigbee2mqtt.loadbalancer.server.port=8080"
 networks:

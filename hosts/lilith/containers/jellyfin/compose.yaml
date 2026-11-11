@@ -17,7 +17,6 @@ services:
       TZ: Europe/Berlin
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jellyfin.entryPoints=websecure"
       - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.home.schndr.cloud`)"
       - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
 networks:

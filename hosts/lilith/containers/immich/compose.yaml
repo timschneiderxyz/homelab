@@ -19,7 +19,6 @@ services:
     labels:
       - "com.getarcaneapp.arcane.updater=false"
       - "traefik.enable=true"
-      - "traefik.http.routers.immich.entryPoints=websecure"
       - "traefik.http.routers.immich.rule=Host(`immich.home.schndr.cloud`)"
       - "traefik.http.services.immich.loadbalancer.server.port=2283"
   immich-machine-learning:

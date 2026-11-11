@@ -25,7 +25,6 @@ services:
       GITEA__mailer__FROM: ${GITEA__mailer__FROM}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.gitea.entryPoints=websecure"
       - "traefik.http.routers.gitea.rule=Host(`gitea.home.schndr.cloud`)"
       - "traefik.http.services.gitea.loadbalancer.server.port=3000"
 networks:

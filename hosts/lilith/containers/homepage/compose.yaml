@@ -14,7 +14,6 @@ services:
       HOMEPAGE_ALLOWED_HOSTS: home.schndr.cloud
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.homepage.entryPoints=websecure"
       - "traefik.http.routers.homepage.rule=Host(`home.schndr.cloud`)"
       - "traefik.http.services.homepage.loadbalancer.server.port=3000"
 networks:

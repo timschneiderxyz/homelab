@@ -21,7 +21,6 @@ services:
       ANALYTICS_DISABLED: true
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.arcane.entryPoints=websecure"
       - "traefik.http.routers.arcane.rule=Host(`arcane.home.schndr.cloud`)"
       - "traefik.http.services.arcane.loadbalancer.server.port=3552"
 networks:

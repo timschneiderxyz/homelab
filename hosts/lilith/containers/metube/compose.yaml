@@ -14,7 +14,6 @@ services:
       STATE_DIR: /app/state
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.metube.entryPoints=websecure"
       - "traefik.http.routers.metube.rule=Host(`metube.home.schndr.cloud`)"
       - "traefik.http.services.metube.loadbalancer.server.port=8081"
 networks:

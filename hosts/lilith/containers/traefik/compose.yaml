@@ -22,7 +22,6 @@ services:
     labels:
       - "com.getarcaneapp.arcane.updater=false"
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik.entryPoints=websecure"
       - "traefik.http.routers.traefik.rule=Host(`traefik.home.schndr.cloud`)"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.middlewares=traefik-dashboard-auth"

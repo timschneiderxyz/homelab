@@ -17,7 +17,6 @@ services:
       HASHED_PASSWORD: ${HASHED_PASSWORD}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.vscode.entryPoints=websecure"
       - "traefik.http.routers.vscode.rule=Host(`vscode.home.schndr.cloud`)"
       - "traefik.http.services.vscode.loadbalancer.server.port=8443"
 networks:
