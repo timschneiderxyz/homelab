@@ -17,7 +17,7 @@ services:
       REDIS_HOSTNAME: immich-valkey
       DB_URL: postgres://immich:${POSTGRES_PASSWORD}@immich-postgres:5432/immich?sslmode=disable
     labels:
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "com.getarcaneapp.arcane.updater=false"
       - "traefik.enable=true"
       - "traefik.http.routers.immich.entryPoints=websecure"
       - "traefik.http.routers.immich.rule=Host(`immich.home.schndr.cloud`)"
@@ -34,7 +34,7 @@ services:
     environment:
       TZ: Europe/Berlin
     labels:
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "com.getarcaneapp.arcane.updater=false"
   immich-valkey:
     container_name: immich-valkey
     hostname: immich-valkey.home
@@ -45,7 +45,7 @@ services:
     environment:
       TZ: Europe/Berlin
     labels:
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "com.getarcaneapp.arcane.updater=false"
   immich-postgres:
     container_name: immich-postgres
     hostname: immich-postgres.home
@@ -61,7 +61,7 @@ services:
       POSTGRES_USER: immich
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     labels:
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "com.getarcaneapp.arcane.updater=false"
 networks:
   dockernet:
     external: true

@@ -17,7 +17,7 @@ services:
     environment:
       TZ: Europe/Berlin
     labels:
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "com.getarcaneapp.arcane.updater=false"
       - "traefik.enable=true"
       - "traefik.http.routers.adguardhome.entryPoints=websecure"
       - "traefik.http.routers.adguardhome.rule=Host(`adguard.home.schndr.cloud`)"

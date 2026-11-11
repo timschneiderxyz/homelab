@@ -1,0 +1,29 @@
+services:
+  arcane:
+    container_name: arcane
+    hostname: arcane.home
+    image: ghcr.io/getarcaneapp/manager:latest
+    restart: unless-stopped
+    cgroup: host
+    networks:
+      - dockernet
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/containers:/opt/containers:ro
+      - ./data:/app/data
+    environment:
+      TZ: Europe/Berlin
+      PUID: 0
+      PGID: 0
+      APP_URL: https://arcane.home.schndr.cloud
+      PROJECTS_DIRECTORY: /opt/containers
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      ANALYTICS_DISABLED: true
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.arcane.entryPoints=websecure"
+      - "traefik.http.routers.arcane.rule=Host(`arcane.home.schndr.cloud`)"
+      - "traefik.http.services.arcane.loadbalancer.server.port=3552"
+networks:
+  dockernet:
+    external: true

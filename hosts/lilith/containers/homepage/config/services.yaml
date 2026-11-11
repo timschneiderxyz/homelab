@@ -44,12 +44,12 @@
         description: Reverse Proxy
         server: docker
         container: traefik
-    - Portainer:
-        href: https://portainer.home.schndr.cloud
-        icon: portainer
+    - Arcane:
+        href: https://arcane.home.schndr.cloud
+        icon: arcane
         description: Container Management
         server: docker
-        container: portainer
+        container: arcane
     - VS Code:
         href: https://vscode.home.schndr.cloud
         icon: vscode

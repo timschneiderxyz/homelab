@@ -11,7 +11,7 @@ services:
     environment:
       TZ: Europe/Berlin
     labels:
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "com.getarcaneapp.arcane.updater=false"
       - "traefik.enable=true"
       - "traefik.http.routers.homeassistant.entryPoints=websecure"
       - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.home.schndr.cloud`)"

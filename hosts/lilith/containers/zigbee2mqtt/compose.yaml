@@ -11,7 +11,7 @@ services:
     environment:
       TZ: Europe/Berlin
     labels:
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "com.getarcaneapp.arcane.updater=false"
       - "traefik.enable=true"
       - "traefik.http.routers.zigbee2mqtt.entryPoints=websecure"
       - "traefik.http.routers.zigbee2mqtt.rule=Host(`zigbee2mqtt.home.schndr.cloud`)"

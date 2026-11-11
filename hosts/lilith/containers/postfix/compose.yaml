@@ -25,7 +25,7 @@ services:
       POSTFIX_smtpd_sasl_mechanism_filter: "plain, CRAM-MD5"
       POSTFIX_smtpd_relay_restrictions: "permit_sasl_authenticated, reject"
     labels:
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "com.getarcaneapp.arcane.updater=false"
 networks:
   dockernet:
     external: true

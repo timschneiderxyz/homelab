@@ -20,7 +20,7 @@ services:
       CF_API_EMAIL: ${CF_API_EMAIL}
       CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
     labels:
-      - "com.centurylinklabs.watchtower.monitor-only=true"
+      - "com.getarcaneapp.arcane.updater=false"
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entryPoints=websecure"
       - "traefik.http.routers.traefik.rule=Host(`traefik.home.schndr.cloud`)"
